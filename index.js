@@ -48,21 +48,6 @@ export function findAttributes($el, name) {
 }
 
 /**
- * Toggles a given attribute on a bound element.
- *
- * @param {HTMLElement} $el Element to toggle attribute for.
- * @param {string} name Attribute name to toggle.
- * @param {boolean} force Force new toggle state.
- */
-export function toggleAttribute($el, name, force = !$el.hasAttribute(name)) {
-    if (force === false) {
-        $el.removeAttribute(name);
-    } else {
-        $el.setAttribute(name, '');
-    }
-}
-
-/**
  * Triggers a custom event with the given data.
  *
  * @param {HTMLElement} $el Element to trigger event for.
