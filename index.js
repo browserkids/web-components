@@ -129,3 +129,11 @@ export function isElementInViewport($el) {
         right <= (window.innerWidth || document.documentElement.clientWidth)
     );
 }
+
+export default {
+    createShadowRoot,
+    dispatch,
+    findAttributes,
+    findReferences,
+    isElementInViewport,
+};
