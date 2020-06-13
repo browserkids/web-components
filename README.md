@@ -6,13 +6,13 @@ This is a collection of handy DOM functions. They are all written in ES6+ code a
 
 Running locally or need to install it? Just run…
 
-`npm install -S @mzdr/dom`
+`npm install -S @browserkids/dom`
 
 Want to use it directly on your website? Try this…
 
 ```html
 <script type="module">
-import { isElementInViewport } from 'https://unpkg.com/@mzdr/dom/index.js';
+import { isElementInViewport } from 'https://unpkg.com/@browserkids/dom/index.js';
 
 console.log(isElementInViewport(document.body))
 </script>

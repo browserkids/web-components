@@ -1,12 +1,12 @@
 {
-  "name": "@mzdr/dom",
+  "name": "@browserkids/dom",
   "version": "0.1.0",
   "description": "Non-transpiled ES6+ DOM helper functions.",
   "main": "index.js",
   "scripts": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mzdr/dom.git"
+    "url": "git+https://github.com/browserkids/dom.git"
   },
   "keywords": [
     "dom",
@@ -15,7 +15,7 @@
   "author": "Sebastian Prein <hi@sebastianprein.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mzdr/dom/issues"
+    "url": "https://github.com/browserkids/dom/issues"
   },
-  "homepage": "https://github.com/mzdr/dom#readme"
+  "homepage": "https://github.com/browserkids/dom#readme"
 }
