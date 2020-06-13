@@ -1,10 +1,22 @@
 # DOM
 
-This is a collection of handy DOM functions.
+This is a collection of handy DOM functions. They are all written in ES6+ code and are **not** transpiled. 
 
 ## Installation
 
+Running locally or need to install it? Just run…
+
 `npm install -S @mzdr/dom`
+
+Want to use it directly on your website? Try this…
+
+```html
+<script type="module">
+import { isElementInViewport } from 'https://unpkg.com/@mzdr/dom/index.js';
+
+console.log(isElementInViewport(document.body))
+</script>
+```
 
 ## API
 
