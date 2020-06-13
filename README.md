@@ -12,7 +12,7 @@ Want to use it directly on your website? Try this…
 
 ```html
 <script type="module">
-import { isElementInViewport } from 'https://unpkg.com/@browserkids/dom/index.js';
+import { isElementInViewport } from 'https://unpkg.com/@browserkids/dom';
 
 console.log(isElementInViewport(document.body))
 </script>
@@ -23,17 +23,21 @@ console.log(isElementInViewport(document.body))
 **[createShadowRoot()]**  
 Creates a ShadowDOM for this element and uses the given template as content.
 
+**[dispatch()]**  
+Triggers a custom event with the given data.
+
 **[findAttributes()]**  
 Tries to find attributes that name is matching a given regular expression.
 
-**[dispatch()]**  
-Triggers a custom event with the given data.
+**[findReferences()]**  
+Finds all elements that match the given pattern and returns them as a map.
 
 **[isElementInViewport()]**  
 Returns true if the given element is (fully) within the visible area of the viewport.
 
 
 [createShadowRoot()]: ./index.js#L9
-[findAttributes()]: ./index.js#L28
-[dispatch()]: ./index.js#L58
-[isElementInViewport()]: ./index.js#L80
+[dispatch()]: ./index.js#L29
+[findAttributes()]: ./index.js#L52
+[findReferences()]: ./index.js#L82
+[isElementInViewport()]: ./index.js#L122

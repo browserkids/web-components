@@ -19,6 +19,30 @@ export function createShadowRoot($el, template, settings = { mode: 'open' }) {
 }
 
 /**
+ * Triggers a custom event with the given data.
+ *
+ * @param {HTMLElement} $el Element to trigger event for.
+ * @param {string} name Event name.
+ * @param {*} detail Event details.
+ * @param {CustomEventInit} settings Event settings.
+ */
+export function dispatch($el, name, detail, settings = {}) {
+    const defaults = {
+        bubbles: true,
+        composed: false,
+        cancelable: false,
+    };
+
+    $el.dispatchEvent(
+        new CustomEvent(name, {
+            detail,
+            ...defaults,
+            ...settings
+        })
+    );
+}
+
+/**
  * Tries to find attributes that name is matching a given regular expression.
  *
  * @param {HTMLElement} $el Element to check attributes for matches.
@@ -48,27 +72,45 @@ export function findAttributes($el, name) {
 }
 
 /**
- * Triggers a custom event with the given data.
+ * Finds all elements that match the given pattern and returns them as a map.
  *
- * @param {HTMLElement} $el Element to trigger event for.
- * @param {string} name Event name.
- * @param {*} detail Event details.
- * @param {CustomEventInit} settings Event settings.
+ * @param {HTMLElement} $el Element to look for references.
+ * @param {object} settings Settings for adjusting behaviour.
+ * @param {object} $refs Merge with existing references.
+ * @returns {object}
  */
-export function dispatch($el, name, detail, settings = {}) {
+export function findReferences($el, settings = {}, $refs = {}) {
     const defaults = {
-        bubbles: true,
-        composed: false,
-        cancelable: false,
+        pattern: /^#/,
+        ignoreDuplicates: false,
+        recursive: true,
     };
 
-    $el.dispatchEvent(
-        new CustomEvent(name, {
-            detail,
-            ...defaults,
-            ...settings
-        })
-    );
+    const { pattern, ignoreDuplicates, recursive } = { ...defaults, ...settings };
+
+    if ($el.childElementCount > 0 && recursive) {
+        for (let i = 0; i < $el.childElementCount; i += 1) {
+            findReferences($el.children[i], settings, $refs);
+        }
+    }
+
+    const [ref] = findAttributes($el, pattern);
+
+    if (ref === undefined) {
+        return $refs;
+    }
+
+    const name = ref.name.slice(1);
+
+    if ($refs[name] !== undefined && ignoreDuplicates === false) {
+        throw new Error(`Duplicate reference “#${name}” detected.`);
+    }
+
+    $refs[name] = $el;
+
+    $el.removeAttribute(ref.name);
+
+    return $refs;
 }
 
 /**
