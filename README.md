@@ -22,7 +22,7 @@ console.log(isElementInViewport(document.body))
 
 *Almost* every function uses at least one feature of [ECMAScript 6] or above, but **no** ESNext features — promised. So support should be fine for “evergreen” browsers at the time of writing. This means that Internet Explorer is out of the game.
 
-As this library is not transpiled nor ever will be. You should use [polyfills](https://polyfill.io/) in case you need to support a specific browser version. 
+As this library is not transpiled nor ever will be you should use [polyfills](https://polyfill.io/) in case you need to support a specific browser version. 
 
 ## API
 
