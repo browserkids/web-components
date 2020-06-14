@@ -99,7 +99,7 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
     ```
 
 1. **[isElementInViewport()]**  
-    Returns true if the given element is (fully) within the visible area of the viewport.
+    Returns `true` if the given element is (fully) within the visible area of the viewport.
 
 1. **[bindEventListeners()]**  
     Finds all elements that have event listeners defined and binds them automatically.
