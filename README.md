@@ -134,9 +134,9 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
 [ECMAScript 6]: https://kangax.github.io/compat-table/es6/
 [Shadow DOM]: https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM
 
-[createShadowRoot()]: ./index.js#L30
-[dispatch()]: ./index.js#L51
-[findAttributes()]: ./index.js#L75
-[findReferences()]: ./index.js#L104
-[isElementInViewport()]: ./index.js#L147
-[bindEventListeners()]: ./index.js#L166
+[createShadowRoot()]: ./index.js#L30-L49
+[dispatch()]: ./index.js#L51-L73
+[findAttributes()]: ./index.js#L75-L102
+[findReferences()]: ./index.js#L104-L145
+[isElementInViewport()]: ./index.js#L147-L164
+[bindEventListeners()]: ./index.js#L166-L231
