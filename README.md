@@ -40,4 +40,4 @@ Returns true if the given element is (fully) within the visible area of the view
 [dispatch()]: ./index.js#L29
 [findAttributes()]: ./index.js#L52
 [findReferences()]: ./index.js#L82
-[isElementInViewport()]: ./index.js#L122
+[isElementInViewport()]: ./index.js#L125

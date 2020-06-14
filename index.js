@@ -81,8 +81,7 @@ export function findAttributes($el, name) {
  */
 export function findReferences($el, settings = {}, $refs = {}) {
     const defaults = {
-        pattern: /^#/,
-        ignoreDuplicates: false,
+        pattern: /^#(?<id>.+)/,
         recursive: true,
     };
 
@@ -100,13 +99,17 @@ export function findReferences($el, settings = {}, $refs = {}) {
         return $refs;
     }
 
-    const name = ref.name.slice(1);
+    const { id } = ref.name.match(pattern).groups || {};
 
-    if ($refs[name] !== undefined && ignoreDuplicates === false) {
-        throw new Error(`Duplicate reference “#${name}” detected.`);
+    if (id === undefined) {
+        throw new Error('Reference pattern must include named group “id”.');
     }
 
-    $refs[name] = $el;
+    if (Array.isArray($refs[id])) {
+        $refs[id].push($el);
+    } else {
+        $refs[id] = $refs[id] === undefined ? $el : [$refs[id], $el];
+    }
 
     $el.removeAttribute(ref.name);
 
