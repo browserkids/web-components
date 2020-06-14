@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "description": "Non-transpiled ES6+ DOM helper functions.",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "eslint index.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/browserkids/dom.git"
@@ -17,5 +19,10 @@
   "bugs": {
     "url": "https://github.com/browserkids/dom/issues"
   },
-  "homepage": "https://github.com/browserkids/dom#readme"
+  "homepage": "https://github.com/browserkids/dom#readme",
+  "devDependencies": {
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.21.2"
+  }
 }
