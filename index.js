@@ -162,10 +162,78 @@ export function isElementInViewport($el) {
   );
 }
 
+/**
+ * Finds all elements that have event listeners defined and binds them automatically.
+ *
+ * @param {HTMLElement} $el Element to look for event listeners.
+ * @param {object} scope Scope to use for finding the actual event listener functions.
+ * @param {object} settings Settings for adjusting behaviour.
+ */
+export function bindEventListeners($el, scope = $el, settings = {}) {
+  const defaults = {
+    pattern: /^@(?<event>[^.]+).?(?<modifier>.+)?/,
+    recursive: true,
+    cleanUp: true,
+  };
+
+  const { pattern, recursive, cleanUp } = { ...defaults, ...settings };
+
+  if (recursive) {
+    for (let i = 0, n = $el.childElementCount; i < n; i += 1) {
+      bindEventListeners($el.children[i], scope, settings);
+    }
+  }
+
+  findAttributes($el, pattern).forEach((attribute) => {
+    const { event, modifier = '' } = attribute.name.match(pattern).groups || {};
+
+    if (event === undefined) {
+      throw new Error('Reference pattern must include named group “event”.');
+    }
+
+    const fn = scope[attribute.value];
+
+    if (typeof fn !== 'function') {
+      throw new Error(`Event listener function “${attribute.value}” is invalid or undefined for this element.`);
+    }
+
+    if (cleanUp) {
+      $el.removeAttribute(attribute.name);
+    }
+
+    const $target = (modifier.includes('window') && window)
+      || (modifier.includes('document') && document)
+      || (modifier.includes('away') && window)
+      || $el;
+
+    const handler = (e) => {
+      if (
+        (modifier.includes('self') && $el !== e.target) ||
+        (modifier.includes('away') && $el.contains(e.target))
+      ) {
+        return;
+      }
+
+      if (modifier.includes('prevent')) {
+        e.preventDefault();
+      }
+
+      fn.call(scope, e);
+
+      if (modifier.includes('once')) {
+        $target.removeEventListener(event, handler);
+      }
+    };
+
+    $target.addEventListener(event, handler);
+  });
+}
+
 export default {
   createShadowRoot,
   dispatch,
   findAttributes,
   findReferences,
   isElementInViewport,
+  bindEventListeners,
 };

@@ -35,9 +35,13 @@ Finds all elements that match the given pattern and returns them as a map.
 **[isElementInViewport()]**  
 Returns true if the given element is (fully) within the visible area of the viewport.
 
+**[bindEventListeners()]**  
+Finds all elements that have event listeners defined and binds them automatically.
+
 
 [createShadowRoot()]: ./index.js#L38
 [dispatch()]: ./index.js#L58
 [findAttributes()]: ./index.js#L81
 [findReferences()]: ./index.js#L110
 [isElementInViewport()]: ./index.js#L152
+[bindEventListeners()]: ./index.js#L172
