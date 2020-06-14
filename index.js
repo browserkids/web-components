@@ -114,12 +114,13 @@ export function findReferences($el, settings = {}) {
     cleanUp: true,
   };
 
-  const $refs = {};
   const { pattern, recursive, cleanUp } = { ...defaults, ...settings };
+
+  let $refs = {};
 
   if (recursive) {
     for (let i = 0, n = $el.childElementCount; i < n; i += 1) {
-      merge($refs, findReferences($el.children[i], settings));
+      $refs = merge($refs, findReferences($el.children[i], settings));
     }
   }
 
