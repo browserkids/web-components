@@ -35,8 +35,9 @@ function merge(a, b) {
  * @param {string} template Source template string.
  * @param {ShadowRootInit} settings Shadow DOM settings.
  */
-export function createShadowRoot($el, template, settings = { mode: 'open' }) {
-  const shadowRoot = $el.attachShadow(settings);
+export function createShadowRoot($el, template, settings) {
+  const defaults = { mode: 'open' };
+  const shadowRoot = $el.attachShadow({ ...defaults, ...settings });
 
   shadowRoot.appendChild(
     (new DOMParser())
