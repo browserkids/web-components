@@ -36,8 +36,8 @@ Finds all elements that match the given pattern and returns them as a map.
 Returns true if the given element is (fully) within the visible area of the viewport.
 
 
-[createShadowRoot()]: ./index.js#L9
-[dispatch()]: ./index.js#L29
-[findAttributes()]: ./index.js#L52
-[findReferences()]: ./index.js#L82
-[isElementInViewport()]: ./index.js#L125
+[createShadowRoot()]: ./index.js#L38
+[dispatch()]: ./index.js#L58
+[findAttributes()]: ./index.js#L81
+[findReferences()]: ./index.js#L110
+[isElementInViewport()]: ./index.js#L152
