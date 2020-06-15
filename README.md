@@ -4,11 +4,9 @@ This is a collection of handy DOM functions. They are all written in ES6+ code a
 
 ## Installation
 
-Running locally or need to install it? Just run…
+### Using a CDN
 
-`npm install -S @browserkids/dom`
-
-Want to use it directly on your website? Try this…
+Fastest way to get going. See for yourself:
 
 ```html
 <script type="module">
@@ -18,6 +16,30 @@ console.log(isElementInViewport(document.body))
 </script>
 ```
 
+### Self hosted
+
+Semi-fast way. [Download the files](https://github.com/browserkids/dom/releases) and upload them to your server. Just make sure your import path is correct. For example:
+
+```js
+import { isElementInViewport } from './assets/@browserkids/dom';
+```
+
+### Using a bundler
+
+Semi-fast way as well. Just install it via [npm].
+
+```shell
+npm install -S @browserkids/dom
+```
+
+Import the functions where you need them.
+
+```js
+import { isElementInViewport } from '@browserkids/dom';
+```
+
+
+   
 ## Browser support
 
 *Almost* every function uses at least one feature of [ECMAScript 6] or above, but **no** ESNext features — promised. So support should be fine for “evergreen” browsers at the time of writing. This means that Internet Explorer is out of the game.
@@ -133,6 +155,7 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
 
 [ECMAScript 6]: https://kangax.github.io/compat-table/es6/
 [Shadow DOM]: https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM
+[npm]: https://www.npmjs.com/
 
 [createShadowRoot()]: ./index.js#L30-L49
 [dispatch()]: ./index.js#L51-L73
