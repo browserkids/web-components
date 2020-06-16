@@ -150,6 +150,9 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
     - `once`, calls the event listener only once.
     - `window`, attaches the event listener to the window object.
     - `document`, attaches the event listener to the document object.
+
+1. **[lazyDefine()]**
+    Registers custom elements when they occur for the first time in the DOM and lazy-loads their actual implementation.
     
 
 
@@ -163,3 +166,4 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
 [findReferences()]: ./index.js#L104-L145
 [isElementInViewport()]: ./index.js#L147-L164
 [bindEventListeners()]: ./index.js#L166-L231
+[lazyDefine()]: ./index.js#L233-L287
