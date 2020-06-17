@@ -261,7 +261,7 @@ export function lazyDefine(name, importCallback) {
       for (const node of record.addedNodes) {
         const walker = document.createTreeWalker(node, NodeFilter.SHOW_ELEMENT);
 
-        while (walker.nextNode() !== null) {
+        do {
           const tagName = walker.currentNode.tagName.toLowerCase();
           const elementConstructor = lazyDefine.registry.get(tagName);
 
@@ -272,7 +272,7 @@ export function lazyDefine(name, importCallback) {
               customElements.define(tagName, (await elementConstructor()).default);
             })();
           }
-        }
+        } while (walker.nextNode() !== null);
       }
     }
   });
