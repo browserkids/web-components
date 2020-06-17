@@ -253,6 +253,10 @@ export function lazyDefine(name, importCallback) {
   }
 
   lazyDefine.observer = new MutationObserver((records) => {
+    if (lazyDefine.registry.size < 1) {
+      return;
+    }
+
     for (const record of records) {
       for (const node of record.addedNodes) {
         const walker = document.createTreeWalker(node, NodeFilter.SHOW_ELEMENT);
