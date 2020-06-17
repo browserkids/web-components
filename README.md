@@ -151,9 +151,24 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
     - `window`, attaches the event listener to the window object.
     - `document`, attaches the event listener to the document object.
 
-1. **[lazyDefine()]**
-    Registers custom elements when they occur for the first time in the DOM and lazy-loads their actual implementation.
+1. **[lazyDefine()]**  
+    Registers a custom element when it occurs for the first time in the DOM and lazy-loads their actual implementation.
     
+    If you have lots of web components and you do not need them everywhere everytime, you could define/register them lazily and they will get loaded only when they actually appear in the (Shadow) DOM. For example: 
+    
+    ```html
+    <script type="module">
+      import { lazyDefine } from 'https://unpkg.com/@browserkids/dom';
+    
+      lazyDefine('my-button', () => import('../components/MyButton.js'));
+      lazyDefine('my-link', () => import('../components/MyLink.js'));
+
+      // Only my-button will be requested    
+      document.body.append(
+        document.createElement('my-button')
+      );
+    </script>
+    ```
 
 
 [ECMAScript 6]: https://kangax.github.io/compat-table/es6/
