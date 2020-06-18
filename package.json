@@ -4,7 +4,9 @@
   "description": "Non-transpiled ES6+ DOM helper functions.",
   "main": "index.js",
   "scripts": {
-    "test": "eslint index.js"
+    "test": "cypress run",
+    "pretest": "npm run lint",
+    "lint": "eslint index.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +23,7 @@
   },
   "homepage": "https://github.com/browserkids/dom#readme",
   "devDependencies": {
+    "cypress": "^4.8.0",
     "eslint": "^7.2.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.21.2"
