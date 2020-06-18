@@ -1,0 +1,11 @@
+<main id="main">Hello world.</main>
+
+<script type="module">
+  import { findReferences } from '../../index.js';
+
+  const $refs = findReferences(document.body);
+
+  if ($refs === null || $refs === undefined || typeof $refs !== 'object') {
+    throw new Error('Should always return object.');
+  }
+</script>

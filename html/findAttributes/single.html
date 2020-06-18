@@ -1,0 +1,11 @@
+<main id="main">Hello world.</main>
+
+<script type="module">
+  import { findAttributes } from '../../index.js';
+
+  const [id] = findAttributes(document.querySelector('main'), /id/);
+
+  if (id.name !== 'id') {
+    throw new Error('Should match id attribute.');
+  }
+</script>

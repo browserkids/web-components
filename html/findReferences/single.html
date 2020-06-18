@@ -1,0 +1,11 @@
+<main #main>Hello world.</main>
+
+<script type="module">
+  import { findReferences } from '../../index.js';
+
+  const $refs = findReferences(document.body);
+
+  if (Object.keys($refs).length !== 1 || $refs.hasOwnProperty('main') === false) {
+    throw new Error('Should return object with one entry under “main” key.');
+  }
+</script>

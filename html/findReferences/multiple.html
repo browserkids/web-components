@@ -1,0 +1,22 @@
+<main #main>
+  <section #start>
+    <p #copy>Hello world.</p>
+    <p #copy>Goodbye.</p>
+  </section>
+
+  <p #copy>More copy.</p>
+
+  <section #end>
+    <p #copy>Final copy.</p>
+  </section>
+</main>
+
+<script type="module">
+  import { findReferences } from '../../index.js';
+
+  const $refs = findReferences(document.body);
+
+  if (Object.keys($refs).length !== 4 || Array.isArray($refs.copy) === false || $refs.copy.length !== 4) {
+    throw new Error('Should return object with exact 2 entries, but one is an array.');
+  }
+</script>

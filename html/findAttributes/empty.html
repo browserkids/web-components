@@ -1,0 +1,11 @@
+<main id="main">Hello world.</main>
+
+<script type="module">
+  import { findAttributes } from '../../index.js';
+
+  const matches = findAttributes(document.querySelector('main'), /.*/);
+
+  if (Array.isArray(matches) === false) {
+    throw new Error('Should always return array.');
+  }
+</script>

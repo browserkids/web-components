@@ -1,0 +1,11 @@
+<main id="main" class="main-container">Hello world.</main>
+
+<script type="module">
+  import { findAttributes } from '../../index.js';
+
+  const [id, classList] = findAttributes(document.querySelector('main'), /id|class/);
+
+  if (id.name !== 'id' && classList.name !== 'class') {
+    throw new Error('Should match id and class attribute.');
+  }
+</script>

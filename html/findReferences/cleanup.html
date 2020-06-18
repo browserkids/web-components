@@ -1,0 +1,13 @@
+<main #main>Hello world.</main>
+
+<script type="module">
+  import { findReferences } from '../../index.js';
+
+  findReferences(document.body, {
+    cleanUp: true,
+  });
+
+  if (document.querySelector('main').hasAttribute('#main')) {
+    throw new Error('Element should not have matching attribute remaining.');
+  }
+</script>
