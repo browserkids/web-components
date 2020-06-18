@@ -1,0 +1,24 @@
+<script type="module">
+  import { createShadowRoot } from '../../index.js';
+
+  customElements.define('my-element', class MyElement extends HTMLElement {
+    constructor() {
+      super();
+
+      createShadowRoot(this, `
+        <template>
+            <p>First line…</p>
+            <p>Second line…</p>
+        </template>
+      `);
+    }
+  });
+
+  const $el = document.createElement('my-element');
+
+  document.body.appendChild($el);
+
+  if ($el.shadowRoot === null || $el.shadowRoot.children.length !== 2)  {
+    throw new Error('No shadow dom found or it’s not correct.');
+  }
+</script>

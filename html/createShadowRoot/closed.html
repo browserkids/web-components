@@ -1,0 +1,27 @@
+<script type="module">
+  import { createShadowRoot } from '../../index.js';
+
+  customElements.define('my-element', class MyElement extends HTMLElement {
+    constructor() {
+      super();
+
+      const shadowRoot = createShadowRoot(this, `
+        <template>
+            <p>Closed shadow dom.</p>
+        </template>
+      `, { mode: 'closed' });
+
+      if (shadowRoot.mode !== 'closed') {
+        throw new Error('Shadow dom is not closed.');
+      }
+    }
+  });
+
+  const $el = document.createElement('my-element');
+
+  document.body.appendChild($el);
+
+  if ($el.shadowRoot !== null)  {
+    throw new Error('Shadow dom should be closed.');
+  }
+</script>
