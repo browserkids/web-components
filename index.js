@@ -1,33 +1,4 @@
 /**
- * Merges two objects together and automatically
- * creates arrays for entries that are duplicates.
- *
- * @param {object} a Object a.
- * @param {object} b Object b.
- * @returns {object}
- */
-function merge(a, b) {
-  const result = { ...a };
-
-  Object
-    .entries(b)
-    .forEach(([bId, bValue]) => {
-      const aValue = result[bId];
-
-      if (aValue === undefined) {
-        result[bId] = bValue;
-      } else {
-        result[bId] = [
-          ...(Array.isArray(aValue) ? aValue : [aValue]),
-          ...(Array.isArray(bValue) ? bValue : [bValue]),
-        ];
-      }
-    });
-
-  return result;
-}
-
-/**
  * Creates a ShadowDOM for this element and
  * uses the given template as content.
  *
@@ -114,37 +85,41 @@ export function findAttributes($el, name) {
 export function findReferences($el, settings = {}) {
   const defaults = {
     pattern: /^#(?<id>.+)/,
-    recursive: true,
     cleanUp: true,
   };
 
-  const { pattern, recursive, cleanUp } = { ...defaults, ...settings };
+  const { pattern, cleanUp } = { ...defaults, ...settings };
+  const $refs = {};
+  const walker = document.createTreeWalker($el, NodeFilter.SHOW_ELEMENT);
 
-  let $refs = {};
+  do {
+    const $currentNode = walker.currentNode;
+    const [ref] = findAttributes($currentNode, pattern);
 
-  if (recursive) {
-    for (let i = 0, n = $el.childElementCount; i < n; i += 1) {
-      $refs = merge($refs, findReferences($el.children[i], settings));
+    if (ref === undefined) {
+      continue;
     }
-  }
 
-  const [ref] = findAttributes($el, pattern);
+    const { id } = ref.name.match(pattern).groups || {};
 
-  if (ref === undefined) {
-    return $refs;
-  }
+    if (id === undefined) {
+      throw new Error('Reference pattern must include named group “id”.');
+    }
 
-  const { id } = ref.name.match(pattern).groups || {};
+    if (cleanUp) {
+      $currentNode.removeAttribute(ref.name);
+    }
 
-  if (id === undefined) {
-    throw new Error('Reference pattern must include named group “id”.');
-  }
+    const $oldRef = $refs[id];
 
-  if (cleanUp) {
-    $el.removeAttribute(ref.name);
-  }
+    if (Array.isArray($oldRef)) {
+      $oldRef.push($currentNode);
+    } else {
+      $refs[id] = $oldRef ? [$oldRef, $currentNode] : $currentNode;
+    }
+  } while (walker.nextNode() !== null);
 
-  return merge($refs, { [id]: $el });
+  return $refs;
 }
 
 /**
