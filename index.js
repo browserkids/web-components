@@ -34,6 +34,7 @@ function merge(a, b) {
  * @param {HTMLElement} $el Element to create shadow root for.
  * @param {string} template Source template string.
  * @param {ShadowRootInit} settings Shadow DOM settings.
+ * @return {ShadowRoot}
  */
 export function createShadowRoot($el, template, settings) {
   const defaults = { mode: 'open' };
@@ -46,6 +47,8 @@ export function createShadowRoot($el, template, settings) {
       .content
       .cloneNode(true),
   );
+
+  return shadowRoot;
 }
 
 /**
