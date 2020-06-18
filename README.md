@@ -21,7 +21,7 @@ console.log(isElementInViewport(document.body))
 Semi-fast way. [Download the files](https://github.com/browserkids/dom/releases) and upload them to your server. Just make sure your import path is correct. For example:
 
 ```js
-import { isElementInViewport } from './assets/@browserkids/dom';
+import { isElementInViewport } from './assets/@browserkids/dom/index.js';
 ```
 
 ### Using a bundler
@@ -181,4 +181,4 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
 [findReferences()]: ./index.js#L104-L145
 [isElementInViewport()]: ./index.js#L147-L164
 [bindEventListeners()]: ./index.js#L166-L231
-[lazyDefine()]: ./index.js#L233-L287
+[lazyDefine()]: ./index.js#L233-L291
