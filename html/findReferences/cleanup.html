@@ -4,6 +4,14 @@
   import { findReferences } from '../../index.js';
 
   findReferences(document.body, {
+    cleanUp: false,
+  });
+
+  if (document.querySelector('main').hasAttribute('#main') === false) {
+    throw new Error('Element should have matching attribute remaining if cleanup is off.');
+  }
+
+  findReferences(document.body, {
     cleanUp: true,
   });
 

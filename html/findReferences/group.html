@@ -1,0 +1,15 @@
+<main #main>Hello world.</main>
+
+<script type="module">
+  import { findReferences } from '../../index.js';
+
+  try {
+    const $refs = findReferences(document.body, { pattern: /#.*/ });
+
+    throw new Error('Pattern is invalid and should not pass.');
+  } catch (ex) {
+    if (ex.message !== 'Reference pattern must include named group “id”.') {
+      throw ex;
+    }
+  }
+</script>
