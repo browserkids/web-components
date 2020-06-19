@@ -1,0 +1,19 @@
+<label>
+  <input type="checkbox" @click.prevent="onClick"> Can’t check this.
+</label>
+
+<script type="module">
+  import { bindEventListeners } from '../../index.js';
+
+  bindEventListeners(document.body, {
+    onClick() {}
+  });
+
+  const $el = document.querySelector('input');
+
+  $el.click();
+
+  if ($el.checked) {
+    throw new Error('Should prevent default behaviour.')
+  }
+</script>

@@ -1,0 +1,23 @@
+<main @click.away.once="onClick">Hello world.</main>
+
+<script type="module">
+  import { bindEventListeners } from '../../index.js';
+
+  let run = 0;
+
+  bindEventListeners(document.body, {
+    onClick() {
+      run += 1;
+    }
+  });
+
+  document.querySelector('main').click();
+  document.querySelector('main').click();
+
+  document.body.click();
+  document.body.click();
+
+  if (run !== 1) {
+    throw new Error('Event listener should only run once.');
+  }
+</script>

@@ -1,0 +1,28 @@
+<body>
+  <p @click="onClick">Hello world.</p>
+  <p @click="onClick">Good bye.</p>
+
+  <button @click="onReset">Reset counter.</button>
+</body>
+
+<script type="module">
+  import { bindEventListeners } from '../../index.js';
+
+  let counter = 0;
+
+  bindEventListeners(document.body, {
+    onClick() {
+      counter += 1;
+    },
+    onReset() {
+      counter = 0;
+    }
+  });
+
+  document.querySelectorAll('p').forEach($el => $el.click());
+  document.querySelector('button').click();
+
+  if (counter !== 0) {
+    throw new Error('Event listener was not called proper times.');
+  }
+</script>

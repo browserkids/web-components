@@ -1,0 +1,19 @@
+<main @click="onClick">Hello world.</main>
+
+<script type="module">
+  import { bindEventListeners } from '../../index.js';
+
+  let run = false;
+
+  bindEventListeners(document.body, {
+    onClick() {
+      run = true;
+    }
+  });
+
+  document.querySelector('main').click();
+
+  if (run === false) {
+    throw new Error('Event listener was not called.');
+  }
+</script>

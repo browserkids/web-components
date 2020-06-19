@@ -1,0 +1,13 @@
+<main @click="onClick">Hello world.</main>
+
+<script type="module">
+  import { bindEventListeners } from '../../index.js';
+
+  try {
+    bindEventListeners(document.body);
+  } catch (ex) {
+    if (ex.message !== 'Event listener function “onClick” is invalid or undefined for this element.') {
+      throw ex;
+    }
+  }
+</script>
