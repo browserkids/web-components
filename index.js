@@ -39,9 +39,9 @@ export function dispatch($el, name, detail, settings = {}) {
 
   $el.dispatchEvent(
     new CustomEvent(name, {
-      detail,
       ...defaults,
       ...settings,
+      detail,
     }),
   );
 }
