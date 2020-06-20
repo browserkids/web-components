@@ -1,7 +1,15 @@
-# DOM
-[![Known Vulnerabilities](https://snyk.io/test/github/browserkids/dom/badge.svg?targetFile=package.json)](https://snyk.io/test/github/browserkids/dom?targetFile=package.json)
-[![Build Status](https://travis-ci.org/browserkids/dom.svg?branch=master)](https://travis-ci.org/browserkids/dom)
+<p align="center">
+    <a href="https://github.com/browserkids/dom">@browserkids/dom</a>
+</p>
 
+<p align="center">
+    <a href="https://snyk.io/test/github/browserkids/dom?targetFile=package.json"><img src="https://snyk.io/test/github/browserkids/dom/badge.svg?targetFile=package.json" alt="Known Vulnerabilities"></a>
+    <a href="https://travis-ci.org/browserkids/dom"><img src="https://travis-ci.org/browserkids/dom.svg?branch=master" alt="Build Status"></a>
+    <a href="https://david-dm.org/browserkids/dom"><img src="https://david-dm.org/browserkids/dom.svg" alt="Dependency Status"></a>
+    <a href="https://david-dm.org/browserkids/dom/?type=dev"><img src="https://david-dm.org/browserkids/dom/dev-status.svg" alt="devDependency Status"></a>
+</p>
+
+<br>
 
 This is a collection of handy DOM functions. They are all written in ES6+ code and are **not** transpiled. 
 
