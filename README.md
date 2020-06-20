@@ -1,6 +1,6 @@
 # DOM
 [![Known Vulnerabilities](https://snyk.io/test/github/browserkids/dom/badge.svg?targetFile=package.json)](https://snyk.io/test/github/browserkids/dom?targetFile=package.json)
-[![Build Status](https://travis-ci.org/browserkids/dom.png?branch=master)](https://travis-ci.org/browserkids/dom)
+[![Build Status](https://travis-ci.org/browserkids/dom.svg?branch=master)](https://travis-ci.org/browserkids/dom)
 
 
 This is a collection of handy DOM functions. They are all written in ES6+ code and are **not** transpiled. 
