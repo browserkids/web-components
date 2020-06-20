@@ -1,0 +1,42 @@
+<div class="target"></div>
+
+
+<style>
+  body {
+    min-height: 300%;
+  }
+
+  .target {
+    background: red;
+    height: 200px;
+    width: 200px;
+  }
+</style>
+
+<script type="module">
+  import { isElementInViewport } from '../../index.js';
+
+  const $target = document.querySelector('.target');
+
+  window.scrollTo(0, 100);
+
+  if (isElementInViewport($target) !== false) {
+    throw new Error('Should return false because element is not fully in viewport.');
+  }
+
+  if (isElementInViewport($target, { amount: 0.5 }) !== true) {
+    throw new Error('Should return true at least 50% is still inside the viewport.');
+  }
+
+  window.scrollTo(0, 200);
+
+  if (isElementInViewport($target, { amount: 0.1 }) !== false) {
+    throw new Error('Should return false because less than 10% are inside the viewport.');
+  }
+
+  window.scrollTo(0, 300);
+
+  if (isElementInViewport($target, { amount: 0 }) !== true && isElementInViewport($target) !== true) {
+    throw new Error('Should return false because element is not inside the viewport.');
+  }
+</script>

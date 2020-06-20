@@ -121,7 +121,12 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
     ```
 
 1. **[isElementInViewport()]**  
-    Returns `true` if the given element is (fully) within the visible area of the viewport.
+    Returns `true` if the given element is within the boundaries of the given viewport coordinates or at least the amount specified.
+    
+    You may adjust the following settings:
+    
+    - `amount`, specify minimum amount of overlapping/intersection between target element and viewport.
+    - `viewport`, provide a custom viewport bounding rectangle. Default is `window` rectangle, like `{ bottom: window.innerHeight, left: 0, right: window.innerWidth, top: 0 }`.
 
 1. **[bindEventListeners()]**  
     Finds all elements that have event listeners defined and binds them automatically.

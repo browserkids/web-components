@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="target"></div>
+  <div class="viewport"></div>
+  <div class="outside"></div>
+</div>
+
+
+<style>
+  .container {
+    height: 200px;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+  }
+
+  .viewport {
+    box-shadow: inset 0 0 0 2px blue;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  .target {
+    background: red;
+    height: 90%;
+    margin-left: 5%;
+    margin-top: 5%;
+    width: 90%;
+  }
+
+  .outside {
+    box-shadow: inset 0 0 0 2px orange;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transform: translate(20%, 20%);
+    width: 100%;
+  }
+</style>
+
+<script type="module">
+  import { isElementInViewport } from '../../index.js';
+
+  const $target = document.querySelector('.target');
+  const viewport = document.querySelector('.viewport').getBoundingClientRect();
+  const outside = document.querySelector('.outside').getBoundingClientRect();
+
+  if (isElementInViewport($target) !== true) {
+    throw new Error('Should be inside the default viewport.');
+  }
+
+  if (isElementInViewport($target, { viewport }) !== true) {
+    throw new Error('Should be inside the specified viewport.');
+  }
+
+  if (isElementInViewport($target, { viewport: outside }) !== false) {
+    throw new Error('Should not be inside the specified viewport.');
+  }
+</script>

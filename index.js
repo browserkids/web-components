@@ -123,22 +123,38 @@ export function findReferences($el, settings = {}) {
 }
 
 /**
- * Returns true if the given element is (fully) within the visible area of the viewport.
+ * Returns true if the given element is within the boundaries
+ * of the given viewport coordinates or at least the amount specified.
  *
  * @param {HTMLElement} $el Element to check for.
+ * @param {object} settings Settings for adjusting behaviour.
  * @returns {boolean}
  */
-export function isElementInViewport($el) {
-  const {
-    top, left, bottom, right,
-  } = $el.getBoundingClientRect();
+export function isElementInViewport($el, settings = {}) {
+  const defaults = {
+    amount: 1,
+    viewport: {
+      bottom: window.innerHeight,
+      left: 0,
+      right: window.innerWidth,
+      top: 0,
+    },
+  };
 
-  return (
-    top >= 0
-        && left >= 0
-        && bottom <= (window.innerHeight || document.documentElement.clientHeight)
-        && right <= (window.innerWidth || document.documentElement.clientWidth)
-  );
+  const { amount, viewport } = { ...defaults, ...settings };
+
+  const target = $el.getBoundingClientRect();
+
+  const diff = {
+    x: Math.min(viewport.right, target.right) - Math.max(viewport.left, target.left),
+    y: Math.min(viewport.bottom, target.bottom) - Math.max(viewport.top, target.top),
+  };
+
+  const sb = target.width * target.height;
+  const si = Math.max(0, diff.x) * Math.max(0, diff.y);
+  const overlap = (si / sb);
+
+  return amount ? overlap >= amount : overlap === amount;
 }
 
 /**
