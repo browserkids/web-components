@@ -1,4 +1,4 @@
-const visit = file => cy.visit(`./html/findAttributes/${file}.html`);
+const visit = (file) => cy.visit(`./html/findAttributes/${file}.html`);
 
 describe('Finding attributes with regex…', () => {
   it('Should always return array', () => visit('empty'));

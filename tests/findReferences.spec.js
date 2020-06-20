@@ -1,4 +1,4 @@
-const visit = file => cy.visit(`./html/findReferences/${file}.html`);
+const visit = (file) => cy.visit(`./html/findReferences/${file}.html`);
 
 describe('Finding references…', () => {
   it('Should always return array', () => visit('empty'));

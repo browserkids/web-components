@@ -1,4 +1,4 @@
-const visit = file => cy.visit(`./html/createShadowRoot/${file}.html`);
+const visit = (file) => cy.visit(`./html/createShadowRoot/${file}.html`);
 
 describe('Creating Shadow DOM…', () => {
   it('Empty one', () => visit('empty'));

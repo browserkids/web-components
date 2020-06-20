@@ -1,4 +1,4 @@
-const visit = file => cy.visit(`./html/bindEventListeners/${file}.html`);
+const visit = (file) => cy.visit(`./html/bindEventListeners/${file}.html`);
 
 describe('Binding event listeners…', () => {
   it('Should do nothing if there is nothing', () => visit('empty'));
