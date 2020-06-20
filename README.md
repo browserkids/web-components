@@ -126,7 +126,7 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
     You may adjust the following settings:
     
     - `amount`, specify minimum amount of overlapping/intersection between target element and viewport.
-    - `viewport`, provide a custom viewport bounding rectangle. Default is `window` rectangle, like `{ bottom: window.innerHeight, left: 0, right: window.innerWidth, top: 0 }`.
+    - `viewport`, provide a custom viewport [bounding rectangle]. Default is `window` rectangle.
 
 1. **[bindEventListeners()]**  
     Finds all elements that have event listeners defined and binds them automatically.
@@ -179,6 +179,7 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
 [ECMAScript 6]: https://kangax.github.io/compat-table/es6/
 [Shadow DOM]: https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM
 [npm]: https://www.npmjs.com/
+[bounding rectangle]: https://developer.mozilla.org/en-US/docs/Web/API/DOMRect
 
 [createShadowRoot()]: ./index.js#L30-L49
 [dispatch()]: ./index.js#L51-L73
