@@ -3,6 +3,7 @@
 </p>
 
 <p align="center">
+    <a href="https://badge.fury.io/js/%40browserkids%2Fdom"><img src="https://badge.fury.io/js/%40browserkids%2Fdom.svg" alt="npm version" height="18"></a>
     <a href="https://snyk.io/test/github/browserkids/dom?targetFile=package.json"><img src="https://snyk.io/test/github/browserkids/dom/badge.svg?targetFile=package.json" alt="Known Vulnerabilities"></a>
     <a href="https://travis-ci.org/browserkids/dom"><img src="https://travis-ci.org/browserkids/dom.svg?branch=master" alt="Build Status"></a>
     <a href="https://david-dm.org/browserkids/dom"><img src="https://david-dm.org/browserkids/dom.svg" alt="Dependency Status"></a>
@@ -196,10 +197,10 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
 [npm]: https://www.npmjs.com/
 [bounding rectangle]: https://developer.mozilla.org/en-US/docs/Web/API/DOMRect
 
-[createShadowRoot()]: ./index.js#L30-L49
-[dispatch()]: ./index.js#L51-L73
-[findAttributes()]: ./index.js#L75-L102
-[findReferences()]: ./index.js#L104-L145
-[isElementInViewport()]: ./index.js#L147-L164
-[bindEventListeners()]: ./index.js#L166-L231
-[lazyDefine()]: ./index.js#L233-L291
+[createShadowRoot()]: ./index.js#L1-L23
+[dispatch()]: ./index.js#L25-L47
+[findAttributes()]: ./index.js#L49-L76
+[findReferences()]: ./index.js#L78-L123
+[isElementInViewport()]: ./index.js#L125-L158
+[bindEventListeners()]: ./index.js#L160-L223
+[lazyDefine()]: ./index.js#L225-L283
