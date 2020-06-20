@@ -11,7 +11,9 @@
 
 <br>
 
-This is a collection of handy DOM functions. They are all written in ES6+ code and are **not** transpiled. 
+<p align="center">This is a collection of handy DOM functions. They are all written in ES6+ code and are <strong>not</strong> transpiled.</p>
+
+<br>
 
 ## Installation
 
@@ -49,13 +51,15 @@ Import the functions where you need them.
 import { isElementInViewport } from '@browserkids/dom';
 ```
 
-
+<br>
    
 ## Browser support
 
 *Almost* every function uses at least one feature of [ECMAScript 6] or above, but **no** ESNext features — promised. So support should be fine for “evergreen” browsers at the time of writing. This means that Internet Explorer is out of the game.
 
 As this library is not transpiled nor ever will be you should use [polyfills](https://polyfill.io/) in case you need to support a specific browser version. 
+
+<br>
 
 ## API
 
