@@ -1,0 +1,31 @@
+<script type="module">
+  import { lazyDefine, createShadowRoot } from '../../index.js';
+
+  class MyElement extends HTMLElement {
+    constructor() {
+      super();
+
+      createShadowRoot(this, `
+        <template>
+          <my-element2></my-element2>
+        </template>
+      `);
+    }
+  }
+  class MyElement2 extends HTMLElement {}
+
+  lazyDefine('my-element', async () => ({ 'default': MyElement }));
+  lazyDefine('my-element2', async () => ({ 'default': MyElement2 }));
+
+  document.body.appendChild(
+    document.createElement('my-element')
+  );
+
+  window.testPromise = new Promise((resolve) => window.setTimeout(() => {
+    if (document.querySelector('my-element').shadowRoot.querySelector('my-element2') instanceof MyElement2 !== true) {
+      throw new Error('Shadow elements should be upgraded.');
+    }
+
+    resolve();
+  }, 1000));
+</script>

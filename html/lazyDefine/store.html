@@ -1,0 +1,9 @@
+<script type="module">
+  import { lazyDefine } from '../../index.js';
+
+  lazyDefine('my-element', async () => ({ 'default': class MyElement extends HTMLElement {} }));
+
+  if (lazyDefine.registry === undefined || lazyDefine.registry.has('my-element') === false) {
+    throw new Error('Element should be registered with the registry.');
+  }
+</script>

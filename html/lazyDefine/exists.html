@@ -1,0 +1,15 @@
+<my-element></my-element>
+
+<script type="module">
+  import { lazyDefine } from '../../index.js';
+
+  class MyElement extends HTMLElement {}
+
+  window.testPromise = (async () => {
+    await lazyDefine('my-element', async () => ({ 'default': MyElement }));
+
+    if (document.querySelector('my-element') instanceof MyElement !== true || lazyDefine.registry.has('my-element') !== false) {
+      throw new Error('Element should be registered immediately without hitting registry.');
+    }
+  })();
+</script>

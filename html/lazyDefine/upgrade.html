@@ -1,0 +1,19 @@
+<script type="module">
+  import { lazyDefine } from '../../index.js';
+
+  class MyElement extends HTMLElement {}
+
+  lazyDefine('my-element', async () => ({ 'default': MyElement }));
+
+  document.body.appendChild(
+    document.createElement('my-element')
+  );
+
+  window.testPromise = new Promise((resolve) => window.setTimeout(() => {
+    if (document.querySelector('my-element') instanceof MyElement !== true) {
+      throw new Error('Element should be upgraded.');
+    }
+
+    resolve();
+  }, 0));
+</script>

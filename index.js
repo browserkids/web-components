@@ -229,57 +229,57 @@ export function bindEventListeners($el, scope = $el, settings = {}) {
  * @param {string} name Custom element name.
  * @param {function} importCallback A function returning a Promise that delivers the imported module which has the element’s constructor.
  */
-export function lazyDefine(name, importCallback) {
-  if (document.querySelector(name)) {
-    (async () => {
-      customElements.define(name, (await importCallback()).default);
-    })();
+export async function lazyDefine(name, importCallback) {
+  if (lazyDefine.attachShadow === undefined) {
+    lazyDefine.attachShadow = HTMLElement.prototype.attachShadow;
 
-    return;
+    HTMLElement.prototype.attachShadow = function observeShadow(options) {
+      const shadow = lazyDefine.attachShadow.call(this, options);
+
+      lazyDefine.observer.observe(shadow, { subtree: true, childList: true });
+
+      return shadow;
+    };
   }
 
-  lazyDefine.registry = (lazyDefine.registry || new Map()).set(name.toLowerCase(), importCallback);
+  if (lazyDefine.observer === undefined) {
+    lazyDefine.observer = new MutationObserver((records) => {
+      if (lazyDefine.registry.size < 1) {
+        return;
+      }
 
-  if (lazyDefine.observer instanceof MutationObserver) {
-    return;
-  }
+      for (const record of records) {
+        for (const node of [...record.addedNodes].filter(($el) => $el instanceof Text === false)) {
+          const walker = document.createTreeWalker(node, NodeFilter.SHOW_ELEMENT);
 
-  lazyDefine.observer = new MutationObserver((records) => {
-    if (lazyDefine.registry.size < 1) {
-      return;
-    }
+          do {
+            const tagName = walker.currentNode.tagName.toLowerCase();
+            const elementConstructor = lazyDefine.registry.get(tagName);
 
-    for (const record of records) {
-      for (const node of record.addedNodes) {
-        const walker = document.createTreeWalker(node, NodeFilter.SHOW_ELEMENT);
+            if (elementConstructor === undefined) {
+              continue;
+            }
 
-        do {
-          const tagName = walker.currentNode.tagName.toLowerCase();
-          const elementConstructor = lazyDefine.registry.get(tagName);
-
-          if (elementConstructor !== undefined) {
             lazyDefine.registry.delete(tagName);
 
-            (async () => {
-              customElements.define(tagName, (await elementConstructor()).default);
-            })();
-          }
-        } while (walker.nextNode() !== null);
+            (async () => customElements.define(tagName, (await elementConstructor()).default))();
+          } while (walker.nextNode() !== null);
+        }
       }
-    }
-  });
+    });
 
-  lazyDefine.observer.observe(document, { subtree: true, childList: true });
+    lazyDefine.observer.observe(document, { subtree: true, childList: true });
+  }
 
-  const { attachShadow } = HTMLElement.prototype.attachShadow;
+  if (lazyDefine.registry === undefined) {
+    lazyDefine.registry = new Map();
+  }
 
-  HTMLElement.prototype.attachShadow = function observedAttachShadow(options) {
-    const shadow = attachShadow.call(this, options);
-
-    lazyDefine.observer.observe(shadow);
-
-    return shadow;
-  };
+  if (document.querySelector(name)) {
+    customElements.define(name, (await importCallback()).default);
+  } else {
+    lazyDefine.registry.set(name.toLowerCase(), importCallback);
+  }
 }
 
 export default {
