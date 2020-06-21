@@ -222,66 +222,6 @@ export function bindEventListeners($el, scope = $el, settings = {}) {
   } while (walker.nextNode() !== null);
 }
 
-/**
- * Registers custom elements when they occur for the
- * first time in the DOM and lazy-loads their actual implementation.
- *
- * @param {string} name Custom element name.
- * @param {function} importCallback A function returning a Promise that delivers the imported module which has the element’s constructor.
- */
-export function lazyDefine(name, importCallback) {
-  if (document.querySelector(name)) {
-    (async () => {
-      customElements.define(name, (await importCallback()).default);
-    })();
-
-    return;
-  }
-
-  lazyDefine.registry = (lazyDefine.registry || new Map()).set(name.toLowerCase(), importCallback);
-
-  if (lazyDefine.observer instanceof MutationObserver) {
-    return;
-  }
-
-  lazyDefine.observer = new MutationObserver((records) => {
-    if (lazyDefine.registry.size < 1) {
-      return;
-    }
-
-    for (const record of records) {
-      for (const node of record.addedNodes) {
-        const walker = document.createTreeWalker(node, NodeFilter.SHOW_ELEMENT);
-
-        do {
-          const tagName = walker.currentNode.tagName.toLowerCase();
-          const elementConstructor = lazyDefine.registry.get(tagName);
-
-          if (elementConstructor !== undefined) {
-            lazyDefine.registry.delete(tagName);
-
-            (async () => {
-              customElements.define(tagName, (await elementConstructor()).default);
-            })();
-          }
-        } while (walker.nextNode() !== null);
-      }
-    }
-  });
-
-  lazyDefine.observer.observe(document, { subtree: true, childList: true });
-
-  const { attachShadow } = HTMLElement.prototype.attachShadow;
-
-  HTMLElement.prototype.attachShadow = function observedAttachShadow(options) {
-    const shadow = attachShadow.call(this, options);
-
-    lazyDefine.observer.observe(shadow);
-
-    return shadow;
-  };
-}
-
 export default {
   createShadowRoot,
   dispatch,
@@ -289,5 +229,4 @@ export default {
   findReferences,
   isElementInViewport,
   bindEventListeners,
-  lazyDefine,
 };
