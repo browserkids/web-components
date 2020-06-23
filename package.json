@@ -1,6 +1,6 @@
 {
   "name": "@browserkids/dom",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Non-transpiled ES6+ DOM helper functions.",
   "main": "index.js",
   "scripts": {
