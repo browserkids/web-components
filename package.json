@@ -7,7 +7,8 @@
   "scripts": {
     "test": "cypress run",
     "pretest": "npm run lint",
-    "lint": "eslint index.js"
+    "lint": "eslint index.js",
+    "prepublishOnly": "npm test"
   },
   "repository": {
     "type": "git",
