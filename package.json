@@ -6,8 +6,8 @@
   "module": "index.js",
   "scripts": {
     "test": "cypress run",
-    "pretest": "npm run lint",
-    "lint": "eslint index.js",
+    "pretest": "npm run lint && npm run prepare",
+    "lint": "eslint ./src",
     "prepublishOnly": "npm test",
     "prepare": "./bin/pack.js"
   },
