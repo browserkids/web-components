@@ -57,13 +57,22 @@ import { isElementInViewport } from '@browserkids/dom';
 
 Just want to import a single function?
 
-:warn: Some functions depend on other @browserkids/dom functions. See [API](#api) chapter for details.
-
 ```html
 <script type="module">
 import isElementInViewport from 'https://unpkg.com/@browserkids/dom/isElementInViewport';
 
 console.log(isElementInViewport(document.body))
+</script>
+```
+
+:warning: Some functions depend on other @browserkids/dom functions. See [API](#api) chapter for details.
+
+```html
+<script type="module">
+import findAttributes from 'https://unpkg.com/@browserkids/dom/findAttributes';
+import findReferences from 'https://unpkg.com/@browserkids/dom/findReferences';
+
+console.log(findReferences(document.body, { findAttributes }))
 </script>
 ```
 
@@ -154,7 +163,7 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
     Available settings:
     - `pattern` (default: `/^#(?<id>.+)/`), adjust the RegEx pattern for finding references.
     - `cleanUp` (default: `true`), remove attributes after finding reference.
-    - `findAttribute`, function for finding attributes. This is **only** mandatory if you [single-import](#single-import) this function.
+    - `findAttributes`, function for finding attributes. This is **only** mandatory if you [single-import](#single-import) this function.
 
 1. **[isElementInViewport()]**  
     Returns `true` if the given element is within the boundaries of the given viewport coordinates or at least the amount specified.
@@ -195,7 +204,7 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
     Available settings:
     - `pattern` (default: `/^@(?<event>[^.]+).?(?<modifier>.+)?/`), adjust the RegEx pattern for finding event hooks.
     - `cleanUp` (default: `true`), remove attributes after finding reference.
-    - `findAttribute`, function for finding attributes. This is **only** mandatory if you [single-import](#single-import) this function.
+    - `findAttributes`, function for finding attributes. This is **only** mandatory if you [single-import](#single-import) this function.
 
 [ECMAScript 9]: https://kangax.github.io/compat-table/es2016plus/
 [Shadow DOM]: https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM
