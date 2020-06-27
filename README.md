@@ -12,7 +12,7 @@
 
 <br>
 
-<p align="center">This is a collection of handy DOM functions. They are all written in ES6+ code and are <strong>not</strong> transpiled.</p>
+<p align="center">This is a collection of handy DOM functions. They are all written in ES9+ code and are <strong>not</strong> transpiled.</p>
 
 <br>
 
@@ -56,7 +56,7 @@ import { isElementInViewport } from '@browserkids/dom';
    
 ## Browser support
 
-*Almost* every function uses at least one feature of [ECMAScript 6] or above, but **no** ESNext features — promised. So support should be fine for “evergreen” browsers at the time of writing. This means that Internet Explorer is out of the game.
+*Almost* every function uses at least one feature of [ECMAScript 9] or above, but **no** ESNext features — promised. So support should be fine for “evergreen” browsers at the time of writing. This means that Internet Explorer is out of the game.
 
 As this library is not transpiled nor ever will be you should use [polyfills](https://polyfill.io/) in case you need to support a specific browser version. 
 
@@ -172,7 +172,7 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
     - `window`, attaches the event listener to the window object.
     - `document`, attaches the event listener to the document object.
 
-[ECMAScript 6]: https://kangax.github.io/compat-table/es6/
+[ECMAScript 9]: https://kangax.github.io/compat-table/es2016plus/
 [Shadow DOM]: https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM
 [npm]: https://www.npmjs.com/
 [bounding rectangle]: https://developer.mozilla.org/en-US/docs/Web/API/DOMRect
