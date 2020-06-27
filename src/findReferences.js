@@ -1,3 +1,5 @@
+/* global findAttributes */
+
 /**
  * Finds all elements that match the given pattern and returns them as a map.
  *
@@ -17,7 +19,7 @@ export default function findReferences($el, settings = {}) {
 
   do {
     const $currentNode = walker.currentNode;
-    const [ref] = findAttributes($currentNode, pattern);
+    const [ref] = (settings.findAttributes || findAttributes)($currentNode, pattern);
 
     if (ref === undefined) {
       continue;

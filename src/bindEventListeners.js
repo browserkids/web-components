@@ -1,3 +1,5 @@
+/* global findAttributes */
+
 /**
  * Finds all elements that have event listeners defined and binds them automatically.
  *
@@ -17,7 +19,7 @@ export default function bindEventListeners($el, scope = $el, settings = {}) {
   do {
     const $currentNode = walker.currentNode;
 
-    findAttributes($currentNode, pattern).forEach((attribute) => {
+    (settings.findAttributes || findAttributes)($currentNode, pattern).forEach((attribute) => {
       const { event, modifier = '' } = attribute.name.match(pattern).groups || {};
 
       if (event === undefined) {

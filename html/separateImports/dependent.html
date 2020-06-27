@@ -1,0 +1,8 @@
+<script type="module">
+  import findAttributes from '../../src/findAttributes.js';
+  import bindEventListeners from '../../src/bindEventListeners.js';
+  import findReferences from '../../src/findReferences.js';
+
+  bindEventListeners(document.body, {}, { findAttributes });
+  findReferences(document.body, { findAttributes });
+</script>
