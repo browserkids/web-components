@@ -8,7 +8,8 @@
     "test": "cypress run",
     "pretest": "npm run lint",
     "lint": "eslint index.js",
-    "prepublishOnly": "npm test"
+    "prepublishOnly": "npm test",
+    "prepare": "./bin/pack.js"
   },
   "repository": {
     "type": "git",
@@ -24,12 +25,16 @@
     "url": "https://github.com/browserkids/dom/issues"
   },
   "homepage": "https://github.com/browserkids/dom#readme",
+  "dependencies": {},
   "devDependencies": {
     "cypress": "^4.8.0",
     "eslint": "^7.2.0",
     "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-plugin-import": "^2.21.2"
+    "eslint-plugin-import": "^2.21.2",
+    "terser": "^4.8.0"
   },
-  "files": [],
+  "files": [
+    "*.js"
+  ],
   "sideEffects": false
 }
