@@ -177,9 +177,9 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
 [npm]: https://www.npmjs.com/
 [bounding rectangle]: https://developer.mozilla.org/en-US/docs/Web/API/DOMRect
 
-[createShadowRoot()]: ./index.js#L1-L23
-[dispatch()]: ./index.js#L25-L47
-[findAttributes()]: ./index.js#L49-L76
-[findReferences()]: ./index.js#L78-L123
-[isElementInViewport()]: ./index.js#L125-L158
-[bindEventListeners()]: ./index.js#L160-L223
+[createShadowRoot()]: ./src/createShadowRoot.js
+[dispatch()]: ./src/dispatch.js
+[findAttributes()]: ./src/findAttributes.js
+[findReferences()]: ./src/findReferences.js
+[isElementInViewport()]: ./src/isElementInViewport.js
+[bindEventListeners()]: ./src/bindEventListeners.js
