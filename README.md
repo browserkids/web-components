@@ -32,7 +32,7 @@ console.log(isElementInViewport(document.body))
 
 ### Self hosted
 
-Semi-fast way. [Download the files](https://github.com/browserkids/dom/releases) and upload them to your server. Just make sure your import path is correct. For example:
+Semi-fast way. [Download the files](https://github.com/browserkids/dom/releases) and upload them to your server. Just make sure your import path is correct.
 
 ```js
 import { isElementInViewport } from './assets/@browserkids/dom/index.js';
@@ -72,6 +72,7 @@ console.log(isElementInViewport(document.body))
 import findAttributes from 'https://unpkg.com/@browserkids/dom/findAttributes';
 import findReferences from 'https://unpkg.com/@browserkids/dom/findReferences';
 
+// Provide necessary functions via settings object.
 console.log(findReferences(document.body, { findAttributes }))
 </script>
 ```
@@ -139,9 +140,9 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
     ```
 
 1. **[findReferences()]**  
-    Finds all elements that match the given pattern and returns them as a map.
+    Finds all elements within a given element that have `#referenceId` (by default) attributes.
     
-    Based on `findAttributes()` this will return all elements within a given element that have `#referenceId` attributes. For example:
+    :warning: If you [single-import] this function, make sure to provide a `findAttributes()` function.
     
     ```html
     <body>
@@ -163,7 +164,7 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
     Available settings:
     - `pattern` (default: `/^#(?<id>.+)/`), adjust the RegEx pattern for finding references.
     - `cleanUp` (default: `true`), remove attributes after finding reference.
-    - `findAttributes`, function for finding attributes. This is **only** mandatory if you [single-import](#single-import) this function.
+    - `findAttributes`, function for finding attributes. This is **only** mandatory if you [single-import] this function.
 
 1. **[isElementInViewport()]**  
     Returns `true` if the given element is within the boundaries of the given viewport coordinates or at least the amount specified.
@@ -174,9 +175,9 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
     - `viewport`, provide a custom viewport [bounding rectangle]. Default is `window` rectangle.
 
 1. **[bindEventListeners()]**  
-    Finds all elements that have event listeners defined and binds them automatically.
+    Finds all elements that have `@event[.modifier]="function"` (by default) attributes and automatically registers the event listeners to the elements.
     
-    Based on `findAttributes()` this function will find all elements that have `@event[.modifier]="function"` attributes and automatically registers the event listeners to the elements. For example:
+    :warning: If you [single-import] this function, make sure to provide a `findAttributes()` function.
     
     ```html
     <main @click="onClick">Just a random element.</main>
@@ -204,13 +205,14 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
     Available settings:
     - `pattern` (default: `/^@(?<event>[^.]+).?(?<modifier>.+)?/`), adjust the RegEx pattern for finding event hooks.
     - `cleanUp` (default: `true`), remove attributes after finding reference.
-    - `findAttributes`, function for finding attributes. This is **only** mandatory if you [single-import](#single-import) this function.
+    - `findAttributes`, function for finding attributes. This is **only** mandatory if you [single-import] this function.
 
 [ECMAScript 9]: https://kangax.github.io/compat-table/es2016plus/
 [Shadow DOM]: https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM
 [npm]: https://www.npmjs.com/
 [bounding rectangle]: https://developer.mozilla.org/en-US/docs/Web/API/DOMRect
 
+[single-import]: #single-import
 [createShadowRoot()]: ./src/createShadowRoot.js
 [dispatch()]: ./src/dispatch.js
 [findAttributes()]: ./src/findAttributes.js
