@@ -236,3 +236,6 @@ fabric.properties
 .idea/$CACHE_FILE$
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,phpstorm,node
+
+# Ignore root level JavaScript files as they are built pre-publish
+/*.js
