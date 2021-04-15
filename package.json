@@ -6,10 +6,10 @@
   "module": "index.js",
   "scripts": {
     "test": "cypress run",
-    "pretest": "npm run lint && npm run prepare",
+    "pretest": "npm run lint && npm run pack",
     "lint": "eslint ./src",
     "prepublishOnly": "npm test",
-    "prepare": "./bin/pack.js"
+    "pack": "./bin/pack.js"
   },
   "repository": {
     "type": "git",
