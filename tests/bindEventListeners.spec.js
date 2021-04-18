@@ -10,4 +10,5 @@ describe('Binding event listeners…', () => {
   it('Should consider multiple event listeners', () => visit('multiple-events'));
   it('Should consider multiple modifiers', () => visit('multiple-modifiers'));
   it('Should prevent default behaviour', () => visit('prevent'));
+  it('Should support dot notation', () => visit('dot-notation'));
 });

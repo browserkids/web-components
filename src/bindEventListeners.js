@@ -15,6 +15,7 @@ export default function bindEventListeners($el, scope = $el, settings = {}) {
 
   const { pattern, cleanUp } = { ...defaults, ...settings };
   const walker = document.createTreeWalker($el, NodeFilter.SHOW_ELEMENT);
+  const get = (key, target) => key.split('.').reduce((o, i) => (o || {})[i], target);
 
   do {
     const $currentNode = walker.currentNode;
@@ -27,7 +28,7 @@ export default function bindEventListeners($el, scope = $el, settings = {}) {
         throw new Error('Reference pattern must include named group “event”.');
       }
 
-      const fn = scope[value];
+      const fn = get(value, scope);
 
       if (typeof fn !== 'function') {
         throw new Error(`Event listener function “${value}” is invalid or undefined for this element.`);
