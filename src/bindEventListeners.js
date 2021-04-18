@@ -18,44 +18,46 @@ export default function bindEventListeners($el, scope = $el, settings = {}) {
 
   do {
     const $currentNode = walker.currentNode;
+    const matches = (settings.findAttributes || findAttributes)($currentNode, pattern);
 
-    (settings.findAttributes || findAttributes)($currentNode, pattern).forEach((attribute) => {
-      const { event, modifier = '' } = attribute.name.match(pattern).groups || {};
+    matches.forEach(({ name, value }) => {
+      const { event, modifier = '' } = name.match(pattern).groups || {};
 
       if (event === undefined) {
         throw new Error('Reference pattern must include named group “event”.');
       }
 
-      const fn = scope[attribute.value];
+      const fn = scope[value];
 
       if (typeof fn !== 'function') {
-        throw new Error(`Event listener function “${attribute.value}” is invalid or undefined for this element.`);
+        throw new Error(`Event listener function “${value}” is invalid or undefined for this element.`);
       }
 
       if (cleanUp) {
-        $currentNode.removeAttribute(attribute.name);
+        $currentNode.removeAttribute(name);
       }
 
-      const $target = (modifier.includes('window') && window)
-        || (modifier.includes('document') && document)
-        || (modifier.includes('away') && window)
-        || $currentNode;
+      const isWindow = modifier.includes('window');
+      const isDocument = modifier.includes('document');
+      const isAway = modifier.includes('away');
+      const isPrevent = modifier.includes('prevent');
+      const isOnce = modifier.includes('once');
+      const isSelf = modifier.includes('self');
+
+      const $target = (isWindow && window) || (isDocument && document) || (isAway && window) || $currentNode;
 
       const handler = (e) => {
-        if (
-          (modifier.includes('self') && $currentNode !== e.target)
-          || (modifier.includes('away') && $currentNode.contains(e.target))
-        ) {
+        if ((isSelf && $currentNode !== e.target) || (isAway && $currentNode.contains(e.target))) {
           return;
         }
 
-        if (modifier.includes('prevent')) {
+        if (isPrevent) {
           e.preventDefault();
         }
 
         fn.call(scope, e);
 
-        if (modifier.includes('once')) {
+        if (isOnce) {
           $target.removeEventListener(event, handler);
         }
       };
