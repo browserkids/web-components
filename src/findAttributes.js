@@ -12,7 +12,7 @@ export default function findAttributes($el, name) {
 
   const attributes = [];
 
-  if ($el.attributes === null || $el.attributes === undefined || typeof $el.attributes[Symbol.iterator] !== 'function') {
+  if (typeof $el.hasAttributes !== 'function' || $el.hasAttributes() === false) {
     return attributes;
   }
 
