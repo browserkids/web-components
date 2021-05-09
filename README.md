@@ -89,7 +89,7 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
 
 ## API
 
-1. **[createShadowRoot()]**  
+1. **[createShadowRoot($el, template = '<template></template>', settings = {})](./src/createShadowRoot.js)**  
     Creates a [Shadow DOM] for this element and uses the given template as content.
 
     By default this creates an open Shadow DOM. A very simple example on how to use this would be: 
@@ -120,12 +120,12 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
     </script>
     ```
 
-1. **[dispatch()]**  
+1. **[dispatch($el, name, detail, settings = {})](./src/dispatch.js)**  
     Triggers a custom event with the given data.
 
     This function has some sensible defaults like bubbling enabled or no trespassing of the event between the boundary of shadow and regular DOM.
 
-1. **[findAttributes()]**  
+1. **[findAttributes($el, name))](./src/findAttributes.js)**  
     Tries to find attributes that name is matching a given regular expression.
     
     ```html
@@ -139,7 +139,7 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
     </script>
     ```
 
-1. **[findReferences()]**  
+1. **[findReferences($el, settings = {})](./src/findReferences.js)**  
     Finds all elements within a given element that have `#referenceId` (by default) attributes.
     
     :warning: If you [single-import] this function, make sure to provide a `findAttributes()` function.
@@ -166,7 +166,7 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
     - `cleanUp` (default: `true`), remove attributes after finding reference.
     - `findAttributes`, function for finding attributes. This is **only** mandatory if you [single-import] this function.
 
-1. **[isElementInViewport()]**  
+1. **[isElementInViewport($el, settings = {})](./src/isElementInViewport.js)**  
     Returns `true` if the given element is within the boundaries of the given viewport coordinates or at least the amount specified.
     
     You may adjust the following settings:
@@ -174,7 +174,7 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
     - `amount`, specify minimum amount of overlapping/intersection between target element and viewport.
     - `viewport`, provide a custom viewport [bounding rectangle]. Default is `window` rectangle.
 
-1. **[bindEventListeners()]**  
+1. **[bindEventListeners($el, scope = $el, settings = {})](./src/bindEventListeners.js)**  
     Finds all elements that have `@event[.modifier]="function"` (by default) attributes and automatically registers the event listeners to the elements.
     
     :warning: If you [single-import] this function, make sure to provide a `findAttributes()` function.
@@ -206,16 +206,39 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
     - `pattern` (default: `/^@(?<event>[^.]+).?(?<modifier>.+)?/`), adjust the RegEx pattern for finding event hooks.
     - `cleanUp` (default: `true`), remove attributes after finding reference.
     - `findAttributes`, function for finding attributes. This is **only** mandatory if you [single-import] this function.
+    
+1. **[upgrade($el, template)](./src/upgrade.js)**
+
+    All-in-one function that will run `createShadowRoot`, `bindEventListeners`, `findReferences`.
+
+    :warning: If you [single-import] this function, make sure all necessary functions are known to the global scope.
+
+    ```html
+    <script type="module">
+      import { upgrade } from 'https://unpkg.com/@browserkids/dom';
+    
+      customElements.define('my-custom-element', class MyCustomElement extends HTMLElement {
+        constructor() {
+          super();
+            
+          upgrade(this, `
+            <template>
+              <button @click="onClick" #button>Hit me</button>
+            </template>
+          `);
+
+          console.log(this.$refs);
+        }
+
+        onClick() {
+          console.log('I was clicked.');
+        }
+      });
+    </script>
+    ```
 
 [ECMAScript 9]: https://kangax.github.io/compat-table/es2016plus/
 [Shadow DOM]: https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM
 [npm]: https://www.npmjs.com/
 [bounding rectangle]: https://developer.mozilla.org/en-US/docs/Web/API/DOMRect
-
 [single-import]: #single-import
-[createShadowRoot()]: ./src/createShadowRoot.js
-[dispatch()]: ./src/dispatch.js
-[findAttributes()]: ./src/findAttributes.js
-[findReferences()]: ./src/findReferences.js
-[isElementInViewport()]: ./src/isElementInViewport.js
-[bindEventListeners()]: ./src/bindEventListeners.js

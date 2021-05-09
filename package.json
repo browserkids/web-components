@@ -1,6 +1,6 @@
 {
   "name": "@browserkids/dom",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Non-transpiled ES6+ DOM helper functions.",
   "main": "index.js",
   "module": "index.js",
@@ -27,11 +27,11 @@
   "homepage": "https://github.com/browserkids/dom#readme",
   "dependencies": {},
   "devDependencies": {
-    "cypress": "^7.1.0",
-    "eslint": "^7.24.0",
+    "cypress": "^7.2.0",
+    "eslint": "^7.26.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
-    "terser": "^5.6.1"
+    "terser": "^5.7.0"
   },
   "files": [
     "*.js"
