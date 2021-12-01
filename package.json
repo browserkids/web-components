@@ -27,11 +27,11 @@
   "homepage": "https://github.com/browserkids/dom#readme",
   "dependencies": {},
   "devDependencies": {
-    "cypress": "^7.2.0",
-    "eslint": "^7.26.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.22.1",
-    "terser": "^5.7.0"
+    "cypress": "^9.1.0",
+    "eslint": "^8.3.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.3",
+    "terser": "^5.10.0"
   },
   "files": [
     "*.js"
