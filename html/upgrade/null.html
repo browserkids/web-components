@@ -1,0 +1,17 @@
+<script type="module">
+  import { upgrade } from '../../index.js';
+
+  customElements.define('my-element', class MyElement extends HTMLElement {
+    constructor() {
+      super();
+
+      upgrade(this, null);
+    }
+  });
+
+  document.body.appendChild(document.createElement('my-element'));
+
+  if (document.querySelector('my-element').shadowRoot !== null)  {
+    throw new Error('Found shadow dom even though it’s supposed to be not there.');
+  }
+</script>
