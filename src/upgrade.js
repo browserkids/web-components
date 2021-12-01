@@ -1,6 +1,14 @@
-/* global createShadowRoot, bindEventListeners, findReferences */
+/* global bindEventListeners, createShadowRoot, findReferences */
 export default function upgrade($scope, template) {
-  createShadowRoot($scope, template);
-  $scope.$refs = findReferences($scope.shadowRoot);
-  bindEventListeners($scope.shadowRoot, $scope);
+  const isEmpty = template === false || template === null;
+
+  if (isEmpty === false) {
+    createShadowRoot($scope, template);
+  }
+
+  const $target = isEmpty ? $scope : $scope.shadowRoot;
+
+  $scope.$refs = findReferences($target);
+
+  bindEventListeners($target, $scope);
 }
