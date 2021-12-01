@@ -89,7 +89,7 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
 
 ## API
 
-1. **[createShadowRoot($el, template = '<template></template>', settings = {})](./src/createShadowRoot.js)**  
+1. **[createShadowRoot($el, template = '', settings = {})](./src/createShadowRoot.js)**  
     Creates a [Shadow DOM] for this element and uses the given template as content.
 
     By default this creates an open Shadow DOM. A very simple example on how to use this would be: 
@@ -105,15 +105,13 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
           super();
             
           createShadowRoot(this, `
-            <template>
-              <style>
-                :host::before {
-                  content: 'My scoped styles…';
-                }
-              </style>
+            <style>
+              :host::before {
+                content: 'My scoped styles…';
+              }
+            </style>
             
-              <slot></slot>
-            </template>
+            <slot></slot>
           `);
         }
       });
@@ -214,6 +212,8 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
     :warning: If you [single-import] this function, make sure all necessary functions are known to the global scope.
 
     ```html
+    <my-custom-element></my-custom-element>
+   
     <script type="module">
       import { upgrade } from 'https://unpkg.com/@browserkids/dom';
     
@@ -221,11 +221,7 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
         constructor() {
           super();
             
-          upgrade(this, `
-            <template>
-              <button @click="onClick" #button>Hit me</button>
-            </template>
-          `);
+          upgrade(this, '<button @click="onClick" #button>Hit me</button>');
 
           console.log(this.$refs);
         }

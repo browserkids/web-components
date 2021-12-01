@@ -5,11 +5,7 @@
     constructor() {
       super();
 
-      const shadowRoot = createShadowRoot(this, `
-        <template>
-            <p>Closed shadow dom.</p>
-        </template>
-      `, { mode: 'closed' });
+      const shadowRoot = createShadowRoot(this, '<p>Closed shadow dom.</p>', { mode: 'closed' });
 
       if (shadowRoot.mode !== 'closed') {
         throw new Error('Shadow dom is not closed.');

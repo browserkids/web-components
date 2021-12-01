@@ -7,13 +7,13 @@
  * @param {ShadowRootInit} settings Shadow DOM settings.
  * @return {ShadowRoot}
  */
-export default function createShadowRoot($el, template = '<template></template>', settings = {}) {
+export default function createShadowRoot($el, template = '', settings = {}) {
   const defaults = { mode: 'open' };
   const shadowRoot = $el.attachShadow({ ...defaults, ...settings });
 
   shadowRoot.appendChild(
     (new DOMParser())
-      .parseFromString(template, 'text/html')
+      .parseFromString(`<template>${template}</template>`, 'text/html')
       .querySelector('template')
       .content
       .cloneNode(true),
