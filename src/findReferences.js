@@ -28,7 +28,7 @@ export default function findReferences($el, settings = {}) {
     const { id } = ref.name.match(pattern).groups || {};
 
     if (id === undefined) {
-      throw new Error('Reference pattern must include named group “id”.');
+      throw new Error('Pattern must include named group “id”.');
     }
 
     if (cleanUp) {

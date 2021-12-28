@@ -25,7 +25,7 @@ export default function bindEventListeners($el, scope = $el, settings = {}) {
       const { event, modifier = '' } = name.match(pattern).groups || {};
 
       if (event === undefined) {
-        throw new Error('Reference pattern must include named group “event”.');
+        throw new Error('Pattern must include named group “event”.');
       }
 
       const fn = get(value, scope);

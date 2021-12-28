@@ -8,7 +8,7 @@
 
     throw new Error('Pattern is invalid and should not pass.');
   } catch (ex) {
-    if (ex.message !== 'Reference pattern must include named group “id”.') {
+    if (ex.message !== 'Pattern must include named group “id”.') {
       throw ex;
     }
   }
