@@ -1,0 +1,26 @@
+<my-element :custom="test"></my-element>
+
+<script type="module">
+  import { upgrade } from '../../index.js';
+
+  const test = 'approved';
+
+  customElements.define('my-element', class MyElement extends HTMLElement {
+    constructor() {
+      super();
+      upgrade(this, null, { test });
+    }
+
+    get custom() {
+      return this.getAttribute('custom');
+    }
+
+    set custom(value) {
+      this.setAttribute('custom', value);
+    }
+  });
+
+  if (document.querySelector('my-element').custom !== test) {
+    throw new Error('Custom attribute did not resolve correctly.');
+  }
+</script>
