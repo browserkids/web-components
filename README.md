@@ -205,6 +205,11 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
 
     If the bound values are non-strings they will be converted to strings. Arrays and objects will be concatenated using spaces and values that are `falsey` will be dropped.
 
+    Available settings:
+    - `pattern` (default: `/^:(?<key>[^.]+)/`), adjust the RegEx pattern for finding bind hooks.
+    - `cleanUp` (default: `true`), remove attributes after finding them.
+    - `findAttributes`, function for finding attributes. This is **only** mandatory if you [single-import] this function.
+
 1. **[bindEventListeners($el, scope = $el, settings = {})](./src/bindEventListeners.js)**  
     Finds all elements that have `@event[.modifier]="function"` (by default) attributes and automatically registers the event listeners to the elements.
     
