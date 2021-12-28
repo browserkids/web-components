@@ -172,6 +172,39 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
     - `amount`, specify minimum amount of overlapping/intersection between target element and viewport.
     - `viewport`, provide a custom viewport [bounding rectangle]. Default is `window` rectangle.
 
+
+
+1. **[bindAttributes($el, scope = {}, settings = {})](./src/bindAttributes.js)**  
+    Finds all elements that have `:name="key"` (by default) attributes and automatically two-way binds the values to the elements attributes.
+
+    :warning: If you [single-import] this function, make sure to provide a `findAttributes()` function.
+
+    ```html
+    <body :class="classes">
+      <main :text="welcome"></main>    
+    </body>
+    
+    <script type="module">
+      import { bindAttributes } from 'https://unpkg.com/@browserkids/dom';
+   
+      const defaults = { 
+        classes: {
+          'is-noon': (new Date()).getHours() >= 4,
+        },
+        welcome: 'Hello world.'
+      };
+    
+      const state = bindAttributes(document.body, defaults);
+      // ↪ <main :text="welcome"></main> will become <main>Hello world.</main>
+      // ↪ <body :class="classes">…</body> will become <body class="is-noon">…</body> if current time is past 4pm
+   
+      state.welcome = 'Hello again.';
+      // ↪ <main>Hello world</main> will become <main>Hello again.</main>
+    </script>
+    ```
+
+    If the bound values are non-strings they will be converted to strings. Arrays and objects will be concatenated using spaces and values that are `falsey` will be dropped.
+
 1. **[bindEventListeners($el, scope = $el, settings = {})](./src/bindEventListeners.js)**  
     Finds all elements that have `@event[.modifier]="function"` (by default) attributes and automatically registers the event listeners to the elements.
     
