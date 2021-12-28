@@ -245,7 +245,7 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
     
 1. **[upgrade($el, template)](./src/upgrade.js)**
 
-    All-in-one function that will run `createShadowRoot`, `bindEventListeners`, `findReferences`.
+    All-in-one function that will run `createShadowRoot`, `findReferences`, `bindEventListeners` and `bindAttributes`.
 
     :warning: If you [single-import] this function, make sure all necessary functions are known to the global scope.
 
@@ -258,16 +258,21 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
       customElements.define('my-custom-element', class MyCustomElement extends HTMLElement {
         constructor() {
           super();
-            
-          upgrade(this, '<button @click="onClick" #button>Hit me</button>');
 
-          console.log(this.$refs);
+          this.counter = 0;
+          this.state = upgrade(this, '<button @click="onClick" :text="text"></button>', {
+            text: 'Click me!'
+          });
         }
 
         onClick() {
-          console.log('I was clicked.');
+          this.counter += 1;
+          this.state.text = `
+            Please, no more clicks.
+            ${this.counter} ${this.counter === 1 ? 'was' : 'where'} enough.
+          `;
         }
-      });
+    });
     </script>
     ```
 
