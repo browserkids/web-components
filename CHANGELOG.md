@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.0] - 2021-12-29
+### Added
+- Add `define()` function as successor to `upgrade()`
+- Add basic two-way data binding
+
+### Changed
+- :warning: Drop single imports functionality
+- :warning: Drop `upgrade()`
+- :warning: Drop `isElementInViewport()`, use IntersectionObserver instead
+- :warning: Rename package to `@browserkids/web-components`
+
+
 ## [0.6.0] - 2021-12-01
 ### Added
 - Tests for `upgrade()` function
@@ -52,7 +64,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.0] - 2020-06-13
 First silent release.
 
-[Unreleased]: https://github.com/browserkids/web-components/compare/0.6.0...HEAD
+[Unreleased]: https://github.com/browserkids/web-components/compare/0.7.0...HEAD
+[0.7.0]: https://github.com/browserkids/web-components/compare/0.6.0...0.7.0
 [0.6.0]: https://github.com/browserkids/web-components/compare/0.5.0...0.6.0
 [0.5.0]: https://github.com/browserkids/web-components/compare/0.4.0...0.5.0
 [0.4.0]: https://github.com/browserkids/web-components/compare/0.3.0...0.4.0
