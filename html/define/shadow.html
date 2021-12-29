@@ -1,0 +1,15 @@
+<my-element></my-element>
+
+<script type="module">
+  import { define } from '../../index.js';
+
+  const template = 'passed';
+
+  define(class MyElement extends HTMLElement {
+    template = template;
+  });
+
+  if (document.querySelector('my-element').shadowRoot.firstChild.textContent !== template) {
+    throw new Error('ShadowDOM doesn’t have expected contents.');
+  }
+</script>

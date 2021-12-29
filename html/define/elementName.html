@@ -1,0 +1,18 @@
+<my-custom-name></my-custom-name>
+
+<script type="module">
+  import { define } from '../../index.js';
+
+  const elementName = 'my-custom-name';
+  const template = 'passed';
+
+  define(class MyElement extends HTMLElement {
+    static elementName = elementName;
+
+    template = template;
+  });
+
+  if (document.querySelector(elementName) === null) {
+    throw new Error('ElementName was not properly used.x');
+  }
+</script>

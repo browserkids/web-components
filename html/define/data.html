@@ -1,0 +1,17 @@
+<my-element :text="welcome"></my-element>
+
+<script type="module">
+  import { define } from '../../index.js';
+
+  const welcome = 'Hello world.';
+
+  define(class MyElement extends HTMLElement {
+    data = {
+      welcome,
+    };
+  });
+
+  if (document.querySelector('my-element').textContent !== welcome) {
+    throw new Error('Data binding failed.');
+  }
+</script>
