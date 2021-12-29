@@ -52,10 +52,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.0] - 2020-06-13
 First silent release.
 
-[Unreleased]: https://github.com/browserkids/dom/compare/0.6.0...HEAD
-[0.6.0]: https://github.com/browserkids/dom/compare/0.5.0...0.6.0
-[0.5.0]: https://github.com/browserkids/dom/compare/0.4.0...0.5.0
-[0.4.0]: https://github.com/browserkids/dom/compare/0.3.0...0.4.0
-[0.3.0]: https://github.com/browserkids/dom/compare/0.2.0...0.3.0
-[0.2.0]: https://github.com/browserkids/dom/compare/0.1.0...0.2.0
-[0.1.0]: https://github.com/browserkids/dom/releases/tag/0.1.0
+[Unreleased]: https://github.com/browserkids/web-components/compare/0.6.0...HEAD
+[0.6.0]: https://github.com/browserkids/web-components/compare/0.5.0...0.6.0
+[0.5.0]: https://github.com/browserkids/web-components/compare/0.4.0...0.5.0
+[0.4.0]: https://github.com/browserkids/web-components/compare/0.3.0...0.4.0
+[0.3.0]: https://github.com/browserkids/web-components/compare/0.2.0...0.3.0
+[0.2.0]: https://github.com/browserkids/web-components/compare/0.1.0...0.2.0
+[0.1.0]: https://github.com/browserkids/web-components/releases/tag/0.1.0

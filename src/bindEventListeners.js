@@ -19,7 +19,7 @@ export default function bindEventListeners($el, scope = $el, settings = {}) {
 
   do {
     const $currentNode = walker.currentNode;
-    const matches = (settings.findAttributes || findAttributes)($currentNode, pattern);
+    const matches = findAttributes($currentNode, pattern);
 
     matches.forEach(({ name, value }) => {
       const { event, modifier = '' } = name.match(pattern).groups || {};

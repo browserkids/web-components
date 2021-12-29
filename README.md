@@ -1,13 +1,13 @@
 <p align="center">
-    <a href="https://github.com/browserkids/dom">@browserkids/dom</a>
+    <a href="https://github.com/browserkids/web-components">@browserkids/web-components</a>
 </p>
 
 <p align="center">
     <a href="https://badge.fury.io/js/%40browserkids%2Fdom"><img src="https://badge.fury.io/js/%40browserkids%2Fdom.svg" alt="npm version"></a>
-    <a href="https://snyk.io/test/github/browserkids/dom?targetFile=package.json"><img src="https://snyk.io/test/github/browserkids/dom/badge.svg?targetFile=package.json" alt="Known Vulnerabilities"></a>
-    <a href="https://travis-ci.org/browserkids/dom"><img src="https://travis-ci.org/browserkids/dom.svg?branch=master" alt="Build Status"></a>
-    <a href="https://david-dm.org/browserkids/dom"><img src="https://david-dm.org/browserkids/dom.svg" alt="Dependency Status"></a>
-    <a href="https://david-dm.org/browserkids/dom/?type=dev"><img src="https://david-dm.org/browserkids/dom/dev-status.svg" alt="devDependency Status"></a>
+    <a href="https://snyk.io/test/github/browserkids/web-components?targetFile=package.json"><img src="https://snyk.io/test/github/browserkids/web-components/badge.svg?targetFile=package.json" alt="Known Vulnerabilities"></a>
+    <a href="https://travis-ci.org/browserkids/web-components"><img src="https://travis-ci.org/browserkids/web-components.svg?branch=master" alt="Build Status"></a>
+    <a href="https://david-dm.org/browserkids/web-components"><img src="https://david-dm.org/browserkids/web-components.svg" alt="Dependency Status"></a>
+    <a href="https://david-dm.org/browserkids/web-components/?type=dev"><img src="https://david-dm.org/browserkids/web-components/dev-status.svg" alt="devDependency Status"></a>
 </p>
 
 <br>
@@ -24,7 +24,7 @@ Fastest way to get going. See for yourself:
 
 ```html
 <script type="module">
-import { findReferences } from 'https://unpkg.com/@browserkids/dom';
+import { findReferences } from 'https://unpkg.com/@browserkids/web-components';
 
 console.log(findReferences(document.body))
 </script>
@@ -32,10 +32,10 @@ console.log(findReferences(document.body))
 
 ### Self hosted
 
-Semi-fast way. [Download the files](https://github.com/browserkids/dom/releases) and upload them to your server. Just make sure your import path is correct.
+Semi-fast way. [Download the files](https://github.com/browserkids/web-components/releases) and upload them to your server. Just make sure your import path is correct.
 
 ```js
-import { findReferences } from './assets/@browserkids/dom/index.js';
+import { findReferences } from './assets/@browserkids/web-components/index.js';
 ```
 
 ### Using a bundler
@@ -43,13 +43,13 @@ import { findReferences } from './assets/@browserkids/dom/index.js';
 Semi-fast way as well. Just install it via [npm].
 
 ```shell
-npm install -S @browserkids/dom
+npm install -S @browserkids/web-components
 ```
 
 Import the functions where you need them.
 
 ```js
-import { findReferences } from '@browserkids/dom';
+import { findReferences } from '@browserkids/web-components';
 ```
 
 
@@ -72,7 +72,7 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
     <my-custom-element>rock!</my-custom-element>
     
     <script type="module">
-      import { createShadowRoot } from 'https://unpkg.com/@browserkids/dom';
+      import { createShadowRoot } from 'https://unpkg.com/@browserkids/web-components';
     
       customElements.define('my-custom-element', class MyCustomElement extends HTMLElement {
         constructor() {
@@ -104,7 +104,7 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
     <main #container class="random-class">Just a random element.</main>
    
     <script type="module">
-      import { findAttributes } from 'https://unpkg.com/@browserkids/dom';
+      import { findAttributes } from 'https://unpkg.com/@browserkids/web-components';
    
       // [{ name: '#container', value: '' }]
       console.log(findAttributes(document.querySelector('main'), /^#.+/));
@@ -124,7 +124,7 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
     </body>
     
     <script type="module">
-      import { findReferences } from 'https://unpkg.com/@browserkids/dom';
+      import { findReferences } from 'https://unpkg.com/@browserkids/web-components';
     
       // { header: header, headline: h1, content: main, footer: footer }
       console.log(findReferences(document.body));
@@ -142,7 +142,7 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
     <main @click="onClick">Just a random element.</main>
     
     <script type="module">
-      import { bindEventListeners } from 'https://unpkg.com/@browserkids/dom';
+      import { bindEventListeners } from 'https://unpkg.com/@browserkids/web-components';
     
       bindEventListeners(document.body, {
         onClick() {
@@ -173,7 +173,7 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
     <my-custom-element></my-custom-element>
    
     <script type="module">
-      import { upgrade } from 'https://unpkg.com/@browserkids/dom';
+      import { upgrade } from 'https://unpkg.com/@browserkids/web-components';
     
       customElements.define('my-custom-element', class MyCustomElement extends HTMLElement {
         constructor() {
