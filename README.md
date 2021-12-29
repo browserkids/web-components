@@ -5,7 +5,7 @@
 <p align="center">
     <a href="https://badge.fury.io/js/%40browserkids%2Fdom"><img src="https://badge.fury.io/js/%40browserkids%2Fdom.svg" alt="npm version"></a>
     <a href="https://snyk.io/test/github/browserkids/web-components?targetFile=package.json"><img src="https://snyk.io/test/github/browserkids/web-components/badge.svg?targetFile=package.json" alt="Known Vulnerabilities"></a>
-    <a href="https://travis-ci.org/browserkids/web-components"><img src="https://travis-ci.org/browserkids/web-components.svg?branch=master" alt="Build Status"></a>
+    <a href="https://travis-ci.org/browserkids/web-components"><img src="https://travis-ci.org/browserkids/web-components.svg?branch=main" alt="Build Status"></a>
     <a href="https://libraries.io/npm/@browserkids/web-components"><img src="https://img.shields.io/librariesio/release/npm/@browserkids/web-components.svg" alt="Dependency Status"></a>
 </p>
 
