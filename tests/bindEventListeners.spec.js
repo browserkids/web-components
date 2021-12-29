@@ -11,4 +11,6 @@ describe('Binding event listeners…', () => {
   it('Should consider multiple modifiers', () => visit('multiple-modifiers'));
   it('Should prevent default behaviour', () => visit('prevent'));
   it('Should support dot notation', () => visit('dot-notation'));
+  it('Should support other targets', () => visit('target'));
+  it('Should support capturing events in capture phase', () => visit('capture'));
 });

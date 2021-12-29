@@ -1,0 +1,19 @@
+<main @document.test="onTest"></main>
+
+<script type="module">
+  import { dispatch, bindEventListeners } from '../../index.js';
+
+  let passed = false;
+
+  bindEventListeners(document.body, {
+    onTest({ currentTarget }) {
+      passed = currentTarget === document;
+    }
+  });
+
+  dispatch.call(document, 'test');
+
+  if (passed === false) {
+    throw new Error('Ready state not changed which was bound to document.');
+  }
+</script>

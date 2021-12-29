@@ -1,0 +1,23 @@
+<body @click.capture="onClick">
+  <button>Capture phase</button>
+</body>
+
+<script type="module">
+  import { bindEventListeners } from '../../index.js';
+
+  let isCapturePhase = false;
+
+  bindEventListeners(document.body, {
+    onClick({ eventPhase }) {
+      if (eventPhase === Event.CAPTURING_PHASE) {
+        isCapturePhase = true;
+      }
+    }
+  });
+
+  document.querySelector('button').click();
+
+  if (isCapturePhase === false) {
+    throw new Error('Event is not captured in capture phase.')
+  }
+</script>

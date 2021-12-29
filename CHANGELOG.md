@@ -8,11 +8,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Add `define()` function as successor to `upgrade()`
 - Add basic two-way data binding
+- Add `passive` and `capture` modifiers to `bindEventListeners()`
 
 ### Changed
 - :warning: Drop single imports functionality
 - :warning: Drop `upgrade()`
 - :warning: Drop `isElementInViewport()`, use IntersectionObserver instead
+- :warning: Drop first `$el` parameter in `dispatch()` and use `this` instead
+- :warning: Move target parameter of `bindEventListeners()` pattern into separate group, see [docs](./docs/bindEventListeners.md) for details.
 - :warning: Rename package to `@browserkids/web-components`
 
 
