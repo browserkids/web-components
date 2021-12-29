@@ -1,0 +1,43 @@
+<span :text="a"></span>
+<span :textContent="b"></span>
+<span :html="c"></span>
+<span :innerHTML="d"></span>
+<span :class="e"></span>
+<span :className="f"></span>
+
+<script type="module">
+  import { bindAttributes } from '../../index.js';
+
+  const state = bindAttributes(document.body, {
+    a: 'text',
+    b: 'textContent',
+    c: 'html',
+    d: 'innerHTML',
+    e: 'class',
+    f: 'className'
+  });
+
+  if (document.querySelector('span:nth-child(1)').textContent !== state.a) {
+    throw new Error('Alias “text” not bound to textContent.');
+  }
+
+  if (document.querySelector('span:nth-child(2)').textContent !== state.b) {
+    throw new Error('Alias “textContent” not bound to textContent.');
+  }
+
+  if (document.querySelector('span:nth-child(3)').innerHTML !== state.c) {
+    throw new Error('Alias “html” not bound to innerHTML.');
+  }
+
+  if (document.querySelector('span:nth-child(4)').innerHTML !== state.d) {
+    throw new Error('Alias “innerHTML” not bound to innerHTML.');
+  }
+
+  if (document.querySelector('span:nth-child(5)').className !== state.e) {
+    throw new Error('Alias “class” not bound to className.');
+  }
+
+  if (document.querySelector('span:nth-child(6)').className !== state.f) {
+    throw new Error('Alias “className” not bound to className.');
+  }
+</script>

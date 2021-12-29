@@ -135,6 +135,44 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
     - `pattern` (default: `/^#(?<id>.+)/`), adjust the RegEx pattern for finding references.
     - `cleanUp` (default: `true`), remove attributes after finding reference.
 
+
+
+1. **[bindAttributes($el, scope = {}, settings = {})](./src/bindAttributes.js)**  
+    Finds all elements that have `:name="key"` (by default) attributes and automatically two-way binds the values to the elements attributes.
+
+    :warning: If you [single-import] this function, make sure to provide a `findAttributes()` function.
+
+    ```html
+    <body :class="classes">
+      <main :text="welcome"></main>    
+    </body>
+    
+    <script type="module">
+      import { bindAttributes } from 'https://unpkg.com/@browserkids/dom';
+   
+      const defaults = { 
+        classes: {
+          'is-noon': (new Date()).getHours() >= 4,
+        },
+        welcome: 'Hello world.'
+      };
+    
+      const state = bindAttributes(document.body, defaults);
+      // ↪ <main :text="welcome"></main> will become <main>Hello world.</main>
+      // ↪ <body :class="classes">…</body> will become <body class="is-noon">…</body> if current time is past 4pm
+   
+      state.welcome = 'Hello again.';
+      // ↪ <main>Hello world</main> will become <main>Hello again.</main>
+    </script>
+    ```
+
+    If the bound values are non-strings they will be converted to strings. Arrays and objects will be concatenated using spaces and values that are `falsey` will be dropped.
+
+    Available settings:
+    - `pattern` (default: `/^:(?<key>[^.]+)/`), adjust the RegEx pattern for finding bind hooks.
+    - `cleanUp` (default: `true`), remove attributes after finding them.
+    - `findAttributes`, function for finding attributes. This is **only** mandatory if you [single-import] this function.
+
 1. **[bindEventListeners($el, scope = $el, settings = {})](./src/bindEventListeners.js)**  
     Finds all elements that have `@event[.modifier]="function"` (by default) attributes and automatically registers the event listeners to the elements.
 
@@ -167,7 +205,7 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
     
 1. **[upgrade($el, template)](./src/upgrade.js)**
 
-    All-in-one function that will run `createShadowRoot`, `bindEventListeners`, `findReferences`.
+    All-in-one function that will run `createShadowRoot`, `findReferences`, `bindEventListeners` and `bindAttributes`.
 
     ```html
     <my-custom-element></my-custom-element>
@@ -178,16 +216,21 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
       customElements.define('my-custom-element', class MyCustomElement extends HTMLElement {
         constructor() {
           super();
-            
-          upgrade(this, '<button @click="onClick" #button>Hit me</button>');
 
-          console.log(this.$refs);
+          this.counter = 0;
+          this.state = upgrade(this, '<button @click="onClick" :text="text"></button>', {
+            text: 'Click me!'
+          });
         }
 
         onClick() {
-          console.log('I was clicked.');
+          this.counter += 1;
+          this.state.text = `
+            Please, no more clicks.
+            ${this.counter} ${this.counter === 1 ? 'was' : 'where'} enough.
+          `;
         }
-      });
+    });
     </script>
     ```
 
