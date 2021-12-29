@@ -1,19 +1,11 @@
-<p align="center">
-    <a href="https://github.com/browserkids/web-components">@browserkids/web-components</a>
-</p>
+# @browserkids/web-components
 
-<p align="center">
-    <a href="https://badge.fury.io/js/%40browserkids%2Fdom"><img src="https://badge.fury.io/js/%40browserkids%2Fdom.svg" alt="npm version"></a>
-    <a href="https://snyk.io/test/github/browserkids/web-components?targetFile=package.json"><img src="https://snyk.io/test/github/browserkids/web-components/badge.svg?targetFile=package.json" alt="Known Vulnerabilities"></a>
-    <a href="https://github.com/browserkids/web-components/actions"><img src="https://github.com/browserkids/web-components/actions/workflows/build.yml/badge.svg" alt="Build Status"></a>
-    <a href="https://libraries.io/npm/@browserkids/web-components"><img src="https://img.shields.io/librariesio/release/npm/@browserkids/web-components.svg" alt="Dependency Status"></a>
-</p>
+[![npm version](https://badge.fury.io/js/%40browserkids%2Fdom.svg)]((https://badge.fury.io/js/%40browserkids%2Fdom) )
+[![Known Vulnerabilities](https://snyk.io/test/github/browserkids/web-components/badge.svg?targetFile=package.json)]((https://snyk.io/test/github/browserkids/web-components?targetFile=package.json) )
+[![Build Status](https://github.com/browserkids/web-components/actions/workflows/build.yml/badge.svg)]((https://github.com/browserkids/web-components/actions) )
+[![Dependency Status](https://img.shields.io/librariesio/release/npm/@browserkids/web-components.svg)]((https://libraries.io/npm/@browserkids/web-components) )
 
-<br>
-
-<p align="center">This is a collection of useful web components helper functions. They are all written in latest/cutting edge [ECMAScript 2022] code and are <strong>not</strong> transpiled.</p>
-
-<br>
+This is a collection of useful web components helper functions. They are all written in latest/cutting edge [ECMAScript 2022] code and are <strong>not</strong> transpiled.
 
 ## Installation
 
