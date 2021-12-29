@@ -4,18 +4,21 @@ export default function define(CustomElement) {
   const elementName = name.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
 
   customElements.define(elementName, class extends CustomElement {
+    #shadowRoot = null;
+
     dispatch = dispatch;
 
     constructor() {
       super();
 
-      const { template, data, settings = {} } = this;
+      const { template, data } = this;
+      const { settings = {} } = this.constructor;
 
       if (template) {
-        createShadowRoot(this, template, bindAttributes?.createShadowRoot);
+        this.#shadowRoot = createShadowRoot(this, template, settings?.createShadowRoot);
       }
 
-      const $target = this.shadowRoot ?? this;
+      const $target = this.#shadowRoot ?? this;
 
       this.$refs = findReferences($target, settings?.findReferences);
       this.data = data ? bindAttributes($target, data, settings?.bindAttributes) : data;
