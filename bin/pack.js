@@ -9,7 +9,6 @@ const { name, version } = require('../package.json');
 
 const root = resolve(__dirname, '..');
 const sourceDirectory = resolve(root, 'src');
-const targetDirectory = root;
 const targetPath = resolve(root, 'index.js');
 
 async function minify(code) {
@@ -27,14 +26,9 @@ async function minify(code) {
 
   await Promise.all(
     sourcePaths.map(async (sourcePath, index) => {
-      const code = sourceFiles[index].toString();
-
-      contents += code.replace(/export default/g, 'export');
-
-      await writeFile(
-        resolve(targetDirectory, sourcePath),
-        await minify(`/*! ${name}@${version} */${code}`),
-      );
+      contents += sourceFiles[index]
+        .toString()
+        .replace(/export default/g, 'export');
 
       console.log(`✓ ${sourcePath}`);
     }),
