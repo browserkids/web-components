@@ -1,14 +1,13 @@
 <my-element :custom="test"></my-element>
 
 <script type="module">
-  import { upgrade } from '../../index.js';
+  import { define } from '../../index.js';
 
   const test = 'approved';
 
-  customElements.define('my-element', class MyElement extends HTMLElement {
-    constructor() {
-      super();
-      upgrade(this, null, { test });
+  define(class MyElement extends HTMLElement {
+    data = {
+      test
     }
 
     get custom() {
