@@ -53,7 +53,7 @@ As this library is not transpiled nor ever will be, you should use [polyfills](h
 
 ## API
 
-1. **[define(elementConstructor)](../src/define.js)**  
+1. **[define(elementConstructor)](./src/define.js)**  
 
     The `define()` helper function registers a custom element constructor to the [CustomElementRegistry](https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry/define). To reduce redundant tasks like [creating a ShadowDOM](./docs/createShadowRoot.md), [binding attributes](./docs/bindAttributes.md), [setting up event listeners](./docs/bindEventListeners.md) or fetching [DOM references](./docs/findReferences.md), the given element constructor will be _extended_ and _enhanced_ to have a consistent developing experience.
 
