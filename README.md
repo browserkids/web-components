@@ -24,9 +24,9 @@ Fastest way to get going. See for yourself:
 
 ```html
 <script type="module">
-import { isElementInViewport } from 'https://unpkg.com/@browserkids/dom';
+import { findReferences } from 'https://unpkg.com/@browserkids/dom';
 
-console.log(isElementInViewport(document.body))
+console.log(findReferences(document.body))
 </script>
 ```
 
@@ -35,7 +35,7 @@ console.log(isElementInViewport(document.body))
 Semi-fast way. [Download the files](https://github.com/browserkids/dom/releases) and upload them to your server. Just make sure your import path is correct.
 
 ```js
-import { isElementInViewport } from './assets/@browserkids/dom/index.js';
+import { findReferences } from './assets/@browserkids/dom/index.js';
 ```
 
 ### Using a bundler
@@ -49,36 +49,10 @@ npm install -S @browserkids/dom
 Import the functions where you need them.
 
 ```js
-import { isElementInViewport } from '@browserkids/dom';
+import { findReferences } from '@browserkids/dom';
 ```
 
 
-### Single import
-
-Just want to import a single function?
-
-```html
-<script type="module">
-import isElementInViewport from 'https://unpkg.com/@browserkids/dom/isElementInViewport';
-
-console.log(isElementInViewport(document.body))
-</script>
-```
-
-:warning: Some functions depend on other @browserkids/dom functions. See [API](#api) chapter for details.
-
-```html
-<script type="module">
-import findAttributes from 'https://unpkg.com/@browserkids/dom/findAttributes';
-import findReferences from 'https://unpkg.com/@browserkids/dom/findReferences';
-
-// Provide necessary functions via settings object.
-console.log(findReferences(document.body, { findAttributes }))
-</script>
-```
-
-<br>
-   
 ## Browser support
 
 *Almost* every function uses at least one feature of [ECMAScript 9] or above, but **no** ESNext features — promised. So support should be fine for “evergreen” browsers at the time of writing. This means that Internet Explorer is out of the game.
@@ -139,9 +113,7 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
 
 1. **[findReferences($el, settings = {})](./src/findReferences.js)**  
     Finds all elements within a given element that have `#referenceId` (by default) attributes.
-    
-    :warning: If you [single-import] this function, make sure to provide a `findAttributes()` function.
-    
+
     ```html
     <body>
       <header #header></header>
@@ -162,21 +134,10 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
     Available settings:
     - `pattern` (default: `/^#(?<id>.+)/`), adjust the RegEx pattern for finding references.
     - `cleanUp` (default: `true`), remove attributes after finding reference.
-    - `findAttributes`, function for finding attributes. This is **only** mandatory if you [single-import] this function.
-
-1. **[isElementInViewport($el, settings = {})](./src/isElementInViewport.js)**  
-    Returns `true` if the given element is within the boundaries of the given viewport coordinates or at least the amount specified.
-    
-    You may adjust the following settings:
-    
-    - `amount`, specify minimum amount of overlapping/intersection between target element and viewport.
-    - `viewport`, provide a custom viewport [bounding rectangle]. Default is `window` rectangle.
 
 1. **[bindEventListeners($el, scope = $el, settings = {})](./src/bindEventListeners.js)**  
     Finds all elements that have `@event[.modifier]="function"` (by default) attributes and automatically registers the event listeners to the elements.
-    
-    :warning: If you [single-import] this function, make sure to provide a `findAttributes()` function.
-    
+
     ```html
     <main @click="onClick">Just a random element.</main>
     
@@ -203,13 +164,10 @@ As this library is not transpiled nor ever will be you should use [polyfills](ht
     Available settings:
     - `pattern` (default: `/^@(?<event>[^.]+).?(?<modifier>.+)?/`), adjust the RegEx pattern for finding event hooks.
     - `cleanUp` (default: `true`), remove attributes after finding reference.
-    - `findAttributes`, function for finding attributes. This is **only** mandatory if you [single-import] this function.
     
 1. **[upgrade($el, template)](./src/upgrade.js)**
 
     All-in-one function that will run `createShadowRoot`, `bindEventListeners`, `findReferences`.
-
-    :warning: If you [single-import] this function, make sure all necessary functions are known to the global scope.
 
     ```html
     <my-custom-element></my-custom-element>
