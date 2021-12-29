@@ -1,7 +1,7 @@
 {
   "name": "@browserkids/web-components",
   "version": "0.7.0",
-  "description": "Non-transpiled ES9+ web components helper functions.",
+  "description": "Non-transpiled ES13+ web components helper functions.",
   "main": "index.js",
   "module": "index.js",
   "scripts": {
@@ -27,8 +27,8 @@
   "homepage": "https://github.com/browserkids/web-components#readme",
   "dependencies": {},
   "devDependencies": {
-    "cypress": "^9.1.0",
-    "eslint": "^8.3.0",
+    "cypress": "^9.2.0",
+    "eslint": "^8.5.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.25.3",
     "terser": "^5.10.0"
