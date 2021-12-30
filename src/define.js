@@ -1,7 +1,9 @@
 /* global bindAttributes, bindEventListeners, createShadowRoot, dispatch, findReferences */
 export default function define(CustomElement) {
-  const name = CustomElement.elementName ?? CustomElement.prototype.constructor.name ?? '';
-  const elementName = name.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+  const elementName = CustomElement
+    ?.name
+    ?.replace(/([a-z])([A-Z])/g, '$1-$2')
+    ?.toLowerCase();
 
   customElements.define(elementName, class extends CustomElement {
     #shadowRoot = null;

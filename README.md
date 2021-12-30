@@ -7,6 +7,8 @@
 
 This is a collection of useful web components helper functions. They are all written in latest/cutting edge [ECMAScript 2022] code and are <strong>not</strong> transpiled.
 
+<br>
+
 ## Installation
 
 ### Using a CDN
@@ -37,6 +39,7 @@ Import the functions where you need them.
 import { define } from '@browserkids/web-components';
 ```
 
+<br>
 
 ## Browser support
 
@@ -45,11 +48,6 @@ import { define } from '@browserkids/web-components';
 As this library is not transpiled nor ever will be, you should use [polyfills](https://polyfill.io/) in case you need to support a specific browser version. 
 
 <br>
-
-[ECMAScript 2022]: https://kangax.github.io/compat-table/es2016plus/
-[Shadow DOM]: https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM
-[npm]: https://www.npmjs.com/
-
 
 ## API
 
@@ -66,7 +64,7 @@ As this library is not transpiled nor ever will be, you should use [polyfills](h
       define(class MyElement extends HTMLElement {
       // By default define() uses the class name as element name, 
       // you can override this by defining a custom name.
-      // static elementName = 'my-element';
+      static name = 'my-element';
     
       // You can define a static settings field to override the settings 
       // for the individual functions that define() is using.
@@ -80,7 +78,7 @@ As this library is not transpiled nor ever will be, you should use [polyfills](h
       // Will be used by bindAttributes and turns into a proxy object.
       data = {};
     
-      // Will be used by createShadowRoot from shadow dom creation.
+      // Will be used by createShadowRoot for shadow dom creation.
       template = '';
       
       // Will be called once the element has been inserted to the DOM,
@@ -90,3 +88,7 @@ As this library is not transpiled nor ever will be, you should use [polyfills](h
     
     </script>
     ```
+
+[ECMAScript 2022]: https://kangax.github.io/compat-table/es2016plus/
+[Shadow DOM]: https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM
+[npm]: https://www.npmjs.com/
