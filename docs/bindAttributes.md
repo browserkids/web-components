@@ -7,7 +7,7 @@ Finds all elements that have `:name="key"` (by default) attributes and automatic
 </body>
 
 <script type="module">
-  import { bindAttributes } from 'https://unpkg.com/@browserkids/dom';
+  import { bindAttributes } from 'https://unpkg.com/@browserkids/web-components';
 
   const defaults = { 
     classes: {
