@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.8.0] - 2022-01-01
+### Changed
+- :warning: Drop `dispatch()`
+
+
 ## [0.7.0] - 2022-01-01
 ### Added
 - Add `define()` function as successor to `upgrade()`
@@ -13,7 +18,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - :warning: Drop single imports functionality
 - :warning: Drop `upgrade()`
-- :warning: Drop `dispatch()`
 - :warning: Drop `isElementInViewport()`, use [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver) instead
 - :warning: Move `target` parameter of `bindEventListeners()` pattern into separate group, see [docs](./docs/bindEventListeners.md) for details.
 - :warning: Rename package to `@browserkids/web-components`
@@ -67,7 +71,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.0] - 2020-06-13
 First silent release.
 
-[Unreleased]: https://github.com/browserkids/web-components/compare/0.7.0...HEAD
+[Unreleased]: https://github.com/browserkids/web-components/compare/0.8.0...HEAD
+[0.8.0]: https://github.com/browserkids/web-components/compare/0.7.0...0.8.0
 [0.7.0]: https://github.com/browserkids/web-components/compare/0.6.0...0.7.0
 [0.6.0]: https://github.com/browserkids/web-components/compare/0.5.0...0.6.0
 [0.5.0]: https://github.com/browserkids/web-components/compare/0.4.0...0.5.0
