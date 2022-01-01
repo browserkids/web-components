@@ -1,17 +1,17 @@
-<main @document.test="onTest"></main>
+<main @document.click="onClick"></main>
 
 <script type="module">
-  import { dispatch, bindEventListeners } from '../../index.js';
+  import { bindEventListeners } from '../../index.js';
 
   let passed = false;
 
   bindEventListeners(document.body, {
-    onTest({ currentTarget }) {
+    onClick({ currentTarget }) {
       passed = currentTarget === document;
     }
   });
 
-  dispatch.call(document, 'test');
+  document.querySelector('main').click();
 
   if (passed === false) {
     throw new Error('Ready state not changed which was bound to document.');
