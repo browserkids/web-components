@@ -14,8 +14,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - :warning: Drop single imports functionality
 - :warning: Drop `upgrade()`
 - :warning: Drop `dispatch()`
-- :warning: Drop `isElementInViewport()`, use IntersectionObserver instead
-- :warning: Move target parameter of `bindEventListeners()` pattern into separate group, see [docs](./docs/bindEventListeners.md) for details.
+- :warning: Drop `isElementInViewport()`, use [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver) instead
+- :warning: Move `target` parameter of `bindEventListeners()` pattern into separate group, see [docs](./docs/bindEventListeners.md) for details.
 - :warning: Rename package to `@browserkids/web-components`
 
 
