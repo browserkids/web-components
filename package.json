@@ -16,8 +16,7 @@
     "url": "git+https://github.com/browserkids/web-components.git"
   },
   "keywords": [
-    "dom",
-    "functions"
+    "web-components"
   ],
   "author": "Sebastian Prein <hi@sebastianprein.com>",
   "license": "MIT",
