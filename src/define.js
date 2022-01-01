@@ -1,4 +1,4 @@
-/* global bindAttributes, bindEventListeners, createShadowRoot, dispatch, findReferences */
+/* global bindAttributes, bindEventListeners, createShadowRoot, findReferences */
 export default function define(CustomElement) {
   const elementName = CustomElement
     ?.name
@@ -6,28 +6,35 @@ export default function define(CustomElement) {
     ?.toLowerCase();
 
   customElements.define(elementName, class extends CustomElement {
-    #shadowRoot = null;
-
-    dispatch = dispatch;
-
     constructor() {
       super();
 
       const { template, data } = this;
       const { settings = {} } = this.constructor;
-
-      if (template) {
-        this.#shadowRoot = createShadowRoot(this, template, settings?.createShadowRoot);
-      }
-
-      const $target = this.#shadowRoot ?? this;
+      const $target = template ? createShadowRoot(this, template, settings?.createShadowRoot) : this;
 
       this.$refs = findReferences($target, settings?.findReferences);
       this.data = data ? bindAttributes($target, data, settings?.bindAttributes) : data;
 
       bindEventListeners($target, this, settings?.bindEventListeners);
 
-      this.ready?.();
+      this.ready?.($target);
+    }
+
+    dispatchEvent(name, detail, settings = {}) {
+      const defaults = {
+        bubbles: true,
+        composed: false,
+        cancelable: false,
+      };
+
+      super.dispatchEvent(
+        new CustomEvent(name, {
+          ...defaults,
+          ...settings,
+          detail,
+        }),
+      );
     }
   });
 }

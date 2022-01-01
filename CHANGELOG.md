@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.7.0] - 2021-12-29
+## [0.7.0] - 2022-01-01
 ### Added
 - Add `define()` function as successor to `upgrade()`
 - Add basic two-way data binding
@@ -13,8 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - :warning: Drop single imports functionality
 - :warning: Drop `upgrade()`
+- :warning: Drop `dispatch()`
 - :warning: Drop `isElementInViewport()`, use IntersectionObserver instead
-- :warning: Drop first `$el` parameter in `dispatch()` and use `this` instead
 - :warning: Move target parameter of `bindEventListeners()` pattern into separate group, see [docs](./docs/bindEventListeners.md) for details.
 - :warning: Rename package to `@browserkids/web-components`
 
