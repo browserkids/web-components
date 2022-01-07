@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const { readdir, readFile, writeFile } = require('fs').promises;
-const { resolve, join } = require('path');
+const { basename, resolve } = require('path');
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 const terser = require('terser');
@@ -10,7 +10,9 @@ const { parserOptions: { ecmaVersion: ecma } } = require('../.eslintrc.json');
 
 const root = resolve(__dirname, '..');
 const sourceDirectory = resolve(root, 'src');
-const targetPath = resolve(root, 'index.js');
+const componentsDirectory = resolve(sourceDirectory, 'components');
+const targetDirectory = root;
+const targetPath = resolve(targetDirectory, 'index.js');
 
 async function minify(code) {
   return (await terser.minify(code, { ecma })).code;
@@ -20,7 +22,7 @@ async function* list(path) {
   const entries = await readdir(path, { withFileTypes: true });
 
   for (const file of entries) {
-    const filePath = join(path, file.name);
+    const filePath = resolve(path, file.name);
 
     if (file.isDirectory()) {
       yield* list(filePath);
@@ -36,9 +38,22 @@ async function* list(path) {
   console.log('📦  Processing files…\n');
 
   for await (const file of list(sourceDirectory)) {
-    contents += (await readFile(file))
-      .toString()
-      .replace(/export default/g, 'export');
+    const fileContents = await readFile(file);
+
+    if (file.includes(componentsDirectory) === false) {
+      contents += fileContents
+        .toString()
+        .replace(/export default/g, 'export');
+    } else {
+      const fileName = basename(file);
+
+      contents += `export const ${fileName.split('.').shift()} = '${fileName}';`;
+
+      await writeFile(
+        resolve(targetDirectory, fileName),
+        await minify(`/*! ${name}@${version} */${fileContents}`),
+      );
+    }
 
     console.log(file.replace(sourceDirectory, '.'));
   }

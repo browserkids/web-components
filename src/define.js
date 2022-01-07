@@ -38,3 +38,14 @@ export default function define(CustomElement) {
     }
   });
 }
+
+define.async = async (name, settings = {}) => {
+  const defaults = {
+    key: 'default',
+    path: import.meta?.url?.replace(/\/([^/]+\.m?js)?$/, '') ?? '.',
+  };
+
+  const { key, path } = { ...defaults, ...settings };
+
+  define((await import(`${path}/${name}`))[key]);
+};
