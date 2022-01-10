@@ -1,3 +1,4 @@
+
 # @browserkids/web-components
 
 [![npm version](https://badge.fury.io/js/@browserkids%2Fweb-components.svg)](https://badge.fury.io/js/@browserkids%2Fweb-components)
@@ -64,7 +65,7 @@ As this library is not transpiled nor ever will be, you should use [polyfills](h
       define(class MyElement extends HTMLElement {
       // By default define() uses the class name as element name, 
       // you can override this by defining a custom name.
-      static name = 'my-element';
+      static get name() { return 'my-element'; }
     
       // You can define a static settings field to override the settings 
       // for the individual functions that define() is using.
